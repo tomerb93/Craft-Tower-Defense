@@ -1,0 +1,82 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+[ExecuteAlways]
+public class CoordinateLabeler : MonoBehaviour
+{
+    TextMeshPro label;
+    Vector2Int coordinates = new Vector2Int();
+    GridManager gridManager;
+
+    Color defaultColor = Color.white;
+    Color blockedColor = Color.gray;
+    Color exploredColor = Color.yellow;
+    Color pathColor = Color.red;
+
+    void Awake()
+    {
+        gridManager = FindObjectOfType<GridManager>();
+        label = GetComponent<TextMeshPro>();
+        ProcessLabels();
+    }
+
+    void Update()
+    {
+        if (!Application.isPlaying)
+        {
+            ProcessLabels();
+            UpdateTileName();
+        }
+
+        ToggleLabelsDisplay();
+    }
+
+    void ToggleLabelsDisplay()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            label.enabled = !label.IsActive();
+        }
+    }
+
+    void SetLabelColor()
+    {
+        if (gridManager == null) return;
+
+        Node node = gridManager.GetNode(coordinates);
+
+        if (node == null) return;
+
+        if (!node.isWalkable)
+        {
+            label.color = blockedColor;
+        }
+        else if(node.isPath)
+        {
+            label.color = pathColor;
+        }
+        else if(node.isExplored)
+        {
+            label.color = exploredColor;
+        }
+        else
+        {
+            label.color = defaultColor;
+        }
+    }
+
+    void ProcessLabels()
+    {
+        coordinates.x = Mathf.RoundToInt(transform.parent.position.x / UnityEditor.EditorSnapSettings.move.x);
+        coordinates.y = Mathf.RoundToInt(transform.parent.position.z / UnityEditor.EditorSnapSettings.move.z);
+
+        label.text = $"{coordinates.x},{coordinates.y}";
+    }
+    void UpdateTileName()
+    {
+        transform.parent.name = coordinates.ToString();
+    }
+}
