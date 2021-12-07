@@ -31,6 +31,7 @@ public class CoordinateLabeler : MonoBehaviour
             UpdateTileName();
         }
 
+        SetLabelColor();
         ToggleLabelsDisplay();
     }
 

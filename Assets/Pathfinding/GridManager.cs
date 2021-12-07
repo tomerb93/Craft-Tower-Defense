@@ -25,6 +25,7 @@ public class GridManager : MonoBehaviour
 
     void CreateGrid()
     {
+        Debug.Log("GridManager: Creating grid");
         for(int x = 0; x < gridSize.x; x++)
         {
             for(int y = 0; y < gridSize.y; y++)
