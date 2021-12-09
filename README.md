@@ -10,3 +10,12 @@
 - Tile label colors dynamically set according to BFS traversal
 
 ![Used for debugging](READMEImages/GridBFSLabelColor.jpg)
+
+- Built path using references created during explore neighbors
+
+![Path built](READMEImages/GridBFSPathBuilt.jpg)
+
+- Initial enemy prefab added, and added enemy movement to follow path from BFS
+
+[Link](https://gifs.com/gif/enemymovement-6WzEzL)
+![Enemy movement](https://j.gifs.com/6WzEzL.gif)

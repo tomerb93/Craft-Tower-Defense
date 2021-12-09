@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    [SerializeField] Vector2Int gridSize;
-    Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
     public Dictionary<Vector2Int, Node> Grid { get { return grid; } }
+    public int UnityGridSize { get { return unityGridSize; } }
+
+    [SerializeField] Vector2Int gridSize;
+    [SerializeField] int unityGridSize = 10;
+    
+    Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
 
     void Awake()
     {
@@ -21,6 +25,24 @@ public class GridManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    public Vector3 GetPositionFromCoordinates(Vector2Int coordinates)
+    {
+        Vector3 position = new Vector3();
+        position.x = coordinates.x * unityGridSize;
+        position.z = coordinates.y * unityGridSize;
+
+        return position;
+    }
+
+    public Vector2Int GetCoordinatesFromPosition(Vector3 position)
+    {
+        Vector2Int coordinates = new Vector2Int();
+        coordinates.x = Mathf.RoundToInt(position.x / unityGridSize);
+        coordinates.y = Mathf.RoundToInt(position.y / unityGridSize);
+
+        return coordinates;
     }
 
     void CreateGrid()
