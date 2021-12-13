@@ -12,22 +12,25 @@ public class EnemyMover : MonoBehaviour
     GridManager gridManager;
     Pathfinder pathfinder;
 
+    void OnEnable()
+    {
+        ReturnToStart();
+        CalculatePath(true);
+    }
+
     void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
         pathfinder = FindObjectOfType<Pathfinder>();
     }
 
-
-    void Start()
+    void ReturnToStart()
     {
-        GetPath();
-        StartCoroutine(FollowPath());
+        transform.position = gridManager.GetPositionFromCoordinates(pathfinder.StartCoordinates);
     }
 
     IEnumerator FollowPath()
     {
-        Debug.Log("Starting path");
         for(int i = 0; i < path.Count; i++)
         {
             Vector3 startPosition = transform.position;
@@ -41,13 +44,27 @@ public class EnemyMover : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
+
+        // disable instead of destroying
+        gameObject.SetActive(false);
     }
 
-    void GetPath()
+    void CalculatePath(bool resetPath)
     {
-        Debug.Log("Getting path");
+        Vector2Int coordinates = new Vector2Int();
+
+        if(resetPath)
+        {
+            coordinates = pathfinder.StartCoordinates;
+        }
+        else
+        {
+            coordinates = gridManager.GetCoordinatesFromPosition(transform.position);
+        }
+
         StopAllCoroutines();
         path.Clear();
-        path = pathfinder.GetNewPath();
+        path = pathfinder.GetNewPath(coordinates);
+        StartCoroutine(FollowPath());
     }
 }

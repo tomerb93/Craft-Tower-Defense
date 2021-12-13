@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Pathfinder : MonoBehaviour
 {
+    public Vector2Int StartCoordinates { get { return startCoordinates; } }
+    public Vector2Int DestinationCoordinates { get { return destinationCoordinates; } }
+
     [SerializeField] Vector2Int startCoordinates;
     [SerializeField] Vector2Int destinationCoordinates;
 
@@ -38,7 +41,13 @@ public class Pathfinder : MonoBehaviour
 
     public List<Node> GetNewPath()
     {
-        BreadthFirstSearch();
+        return GetNewPath(startCoordinates);
+    }
+
+    public List<Node> GetNewPath(Vector2Int coordinates)
+    {
+        gridManager.ResetNodes();
+        BreadthFirstSearch(coordinates);
         return BuildPath();
     }
 
@@ -67,15 +76,15 @@ public class Pathfinder : MonoBehaviour
         }
     }
     
-    void BreadthFirstSearch()
+    void BreadthFirstSearch(Vector2Int coordinates)
     {
         bool isRunning = true;
 
         frontier.Clear();
         reached.Clear();
 
-        frontier.Enqueue(startNode);
-        reached.Add(startCoordinates, startNode);
+        frontier.Enqueue(grid[coordinates]);
+        reached.Add(coordinates, grid[coordinates]);
 
         while(frontier.Count > 0 && isRunning)
         {
@@ -85,7 +94,6 @@ public class Pathfinder : MonoBehaviour
             if(currentSearchNode.coordinates == destinationCoordinates)
             {
                 isRunning = false;
-                Debug.Log("Ended BFS");
             }
         }
     }
