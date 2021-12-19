@@ -29,6 +29,6 @@ Enemies are predefined and are enabled/disabled instead of destroyed (more effic
 
 - Added an option to block nodes and Pathfinder now broadcasts message to all enemies to recalculate their path when a node has been blocked. Prevented situation where node will cause the path to be blocked.
 
-![Tower and obstacle](https://j.gifs.com/pZ7RxX.gif)
+[Tower and obstacle direct link](https://j.gifs.com/pZ7RxX.gif) (gif too large to show)
 
 - Added initial tower and obstacle prefab, which can be instantiated on mouse click (left for tower, right for obstacle)
