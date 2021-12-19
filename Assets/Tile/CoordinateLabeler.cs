@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -55,11 +52,11 @@ public class CoordinateLabeler : MonoBehaviour
         {
             label.color = blockedColor;
         }
-        else if(node.isPath)
+        else if (node.isPath)
         {
             label.color = pathColor;
         }
-        else if(node.isExplored)
+        else if (node.isExplored)
         {
             label.color = exploredColor;
         }

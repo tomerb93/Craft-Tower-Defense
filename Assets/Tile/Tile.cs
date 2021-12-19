@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
     public bool IsPlaceable { get { return isPlaceable; } }
-    
+
     [SerializeField] bool isPlaceable;
+    [SerializeField] GameObject obstaclePrefab;
+    [SerializeField] GameObject towerPrefab;
 
     GridManager gridManager;
     Pathfinder pathfinder;
@@ -20,22 +20,35 @@ public class Tile : MonoBehaviour
 
     void Start()
     {
-        if(gridManager != null)
+        if (gridManager != null)
         {
             coordinates = gridManager.GetCoordinatesFromPosition(transform.position);
-        
-            if(!isPlaceable)
+
+            if (!isPlaceable)
             {
                 gridManager.BlockNode(coordinates);
             }
         }
     }
 
-    void OnMouseDown()
+    void OnMouseOver()
     {
-        if (gridManager.GetNode(coordinates).isWalkable &&
-            !pathfinder.WillBlockPath(coordinates))
+        if (Input.GetMouseButtonDown(0))
         {
+            InstantiatePrefabOnTile(towerPrefab);
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            InstantiatePrefabOnTile(obstaclePrefab);
+        }
+    }
+
+    private void InstantiatePrefabOnTile(GameObject prefab)
+    {
+        if (gridManager.GetNode(coordinates).isWalkable && !pathfinder.WillBlockPath(coordinates))
+        {
+            Instantiate(prefab, transform.position, Quaternion.identity);
             gridManager.BlockNode(coordinates);
             pathfinder.BroadcastRecalculatePath();
         }

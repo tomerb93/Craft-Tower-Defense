@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ public class GridManager : MonoBehaviour
 
     [SerializeField] Vector2Int gridSize;
     [SerializeField] int unityGridSize = 10;
-    
+
     Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
 
     void Awake()
@@ -19,7 +18,7 @@ public class GridManager : MonoBehaviour
 
     public Node GetNode(Vector2Int coordinates)
     {
-        if(grid.ContainsKey(coordinates))
+        if (grid.ContainsKey(coordinates))
         {
             return grid[coordinates];
         }
@@ -29,7 +28,7 @@ public class GridManager : MonoBehaviour
 
     public void ResetNodes()
     {
-        foreach(KeyValuePair<Vector2Int, Node> entry in grid)
+        foreach (KeyValuePair<Vector2Int, Node> entry in grid)
         {
             entry.Value.connectedTo = null;
             entry.Value.isExplored = false;
@@ -65,9 +64,9 @@ public class GridManager : MonoBehaviour
 
     void CreateGrid()
     {
-        for(int x = 0; x < gridSize.x; x++)
+        for (int x = 0; x < gridSize.x; x++)
         {
-            for(int y = 0; y < gridSize.y; y++)
+            for (int y = 0; y < gridSize.y; y++)
             {
                 Vector2Int coordinates = new Vector2Int(x, y);
                 grid.Add(coordinates, new Node(coordinates, true));

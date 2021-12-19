@@ -22,7 +22,7 @@ public class Pathfinder : MonoBehaviour
     void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
-    
+
         if (gridManager != null)
         {
             grid = gridManager.Grid;
@@ -61,7 +61,7 @@ public class Pathfinder : MonoBehaviour
             }
         }
 
-        foreach(Node neighbor in neighbors)
+        foreach (Node neighbor in neighbors)
         {
             if (!reached.ContainsKey(neighbor.coordinates) && neighbor.isWalkable)
             {
@@ -71,7 +71,7 @@ public class Pathfinder : MonoBehaviour
             }
         }
     }
-    
+
     void BreadthFirstSearch(Vector2Int coordinates)
     {
         bool isRunning = true;
@@ -82,12 +82,12 @@ public class Pathfinder : MonoBehaviour
         frontier.Enqueue(grid[coordinates]);
         reached.Add(coordinates, grid[coordinates]);
 
-        while(frontier.Count > 0 && isRunning)
+        while (frontier.Count > 0 && isRunning)
         {
             currentSearchNode = frontier.Dequeue();
             currentSearchNode.isExplored = true;
             ExploreNeighbors();
-            if(currentSearchNode.coordinates == destinationCoordinates)
+            if (currentSearchNode.coordinates == destinationCoordinates)
             {
                 isRunning = false;
             }
@@ -102,7 +102,7 @@ public class Pathfinder : MonoBehaviour
         path.Add(currentNode);
         currentNode.isPath = true;
 
-        while(currentNode.connectedTo != null)
+        while (currentNode.connectedTo != null)
         {
             currentNode = currentNode.connectedTo;
             path.Add(currentNode);
@@ -116,7 +116,7 @@ public class Pathfinder : MonoBehaviour
 
     public bool WillBlockPath(Vector2Int coordinates)
     {
-        if(grid.ContainsKey(coordinates))
+        if (grid.ContainsKey(coordinates))
         {
             bool previousState = grid[coordinates].isWalkable;
 
@@ -125,8 +125,9 @@ public class Pathfinder : MonoBehaviour
             grid[coordinates].isWalkable = previousState;
 
             // path wasn't able to be built, node will block path
-            if(tempPath.Count <= 1)
+            if (tempPath.Count <= 1)
             {
+                // todo: add UI for this
                 Debug.Log("Not allowed. Placing here will block the path.");
                 GetNewPath();
                 return true;

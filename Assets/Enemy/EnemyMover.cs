@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,7 +29,7 @@ public class EnemyMover : MonoBehaviour
     {
         Vector2Int coordinates = new Vector2Int();
 
-        if(resetPath)
+        if (resetPath)
         {
             coordinates = pathfinder.StartCoordinates;
         }
@@ -47,7 +46,7 @@ public class EnemyMover : MonoBehaviour
 
     IEnumerator FollowPath()
     {
-        for(int i = 1; i < path.Count; i++)
+        for (int i = 1; i < path.Count; i++)
         {
             Vector3 startPosition = transform.position;
             Vector3 endPosition = gridManager.GetPositionFromCoordinates(path[i].coordinates);

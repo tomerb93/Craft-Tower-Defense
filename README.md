@@ -28,3 +28,7 @@ Enemies are predefined and are enabled/disabled instead of destroyed (more effic
 ![Block node and recalculate path](https://j.gifs.com/79Onqr.gif)
 
 - Added an option to block nodes and Pathfinder now broadcasts message to all enemies to recalculate their path when a node has been blocked. Prevented situation where node will cause the path to be blocked.
+
+![Tower and obstacle](https://j.gifs.com/pZ7RxX.gif)
+
+- Added initial tower and obstacle prefab, which can be instantiated on mouse click (left for tower, right for obstacle)
