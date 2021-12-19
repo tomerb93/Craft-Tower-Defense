@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +9,6 @@ public class Pathfinder : MonoBehaviour
     [SerializeField] Vector2Int startCoordinates;
     [SerializeField] Vector2Int destinationCoordinates;
 
-    Node startNode;
     Node destinationNode;
     Node currentSearchNode;
 
@@ -29,7 +26,6 @@ public class Pathfinder : MonoBehaviour
         if (gridManager != null)
         {
             grid = gridManager.Grid;
-            startNode = grid[startCoordinates];
             destinationNode = grid[destinationCoordinates];
         }
     }
@@ -118,5 +114,31 @@ public class Pathfinder : MonoBehaviour
         return path;
     }
 
+    public bool WillBlockPath(Vector2Int coordinates)
+    {
+        if(grid.ContainsKey(coordinates))
+        {
+            bool previousState = grid[coordinates].isWalkable;
 
+            grid[coordinates].isWalkable = false;
+            List<Node> tempPath = GetNewPath();
+            grid[coordinates].isWalkable = previousState;
+
+            // path wasn't able to be built, node will block path
+            if(tempPath.Count <= 1)
+            {
+                Debug.Log("Not allowed. Placing here will block the path.");
+                GetNewPath();
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void BroadcastRecalculatePath()
+    {
+        // triggers CalculatePath method in all children of game object (enemies)
+        BroadcastMessage("CalculatePath", false, SendMessageOptions.DontRequireReceiver);
+    }
 }

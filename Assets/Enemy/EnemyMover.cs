@@ -24,30 +24,7 @@ public class EnemyMover : MonoBehaviour
         pathfinder = FindObjectOfType<Pathfinder>();
     }
 
-    void ReturnToStart()
-    {
-        transform.position = gridManager.GetPositionFromCoordinates(pathfinder.StartCoordinates);
-    }
 
-    IEnumerator FollowPath()
-    {
-        for(int i = 0; i < path.Count; i++)
-        {
-            Vector3 startPosition = transform.position;
-            Vector3 endPosition = gridManager.GetPositionFromCoordinates(path[i].coordinates);
-            float travelPercent = 0f;
-
-            while (travelPercent < 1f)
-            {
-                travelPercent += Time.deltaTime * speed;
-                transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
-                yield return new WaitForEndOfFrame();
-            }
-        }
-
-        // disable instead of destroying
-        gameObject.SetActive(false);
-    }
 
     void CalculatePath(bool resetPath)
     {
@@ -66,5 +43,29 @@ public class EnemyMover : MonoBehaviour
         path.Clear();
         path = pathfinder.GetNewPath(coordinates);
         StartCoroutine(FollowPath());
+    }
+
+    IEnumerator FollowPath()
+    {
+        for(int i = 1; i < path.Count; i++)
+        {
+            Vector3 startPosition = transform.position;
+            Vector3 endPosition = gridManager.GetPositionFromCoordinates(path[i].coordinates);
+            float travelPercent = 0f;
+
+            while (travelPercent < 1f)
+            {
+                travelPercent += Time.deltaTime * speed;
+                transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
+                yield return new WaitForEndOfFrame();
+            }
+        }
+
+        // disable instead of destroying
+        gameObject.SetActive(false);
+    }
+    void ReturnToStart()
+    {
+        transform.position = gridManager.GetPositionFromCoordinates(pathfinder.StartCoordinates);
     }
 }
