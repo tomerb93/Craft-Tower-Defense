@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class EnemyMover : MonoBehaviour
 
     GridManager gridManager;
     Pathfinder pathfinder;
+    bool isSlowed;
 
     void OnEnable()
     {
@@ -17,13 +19,25 @@ public class EnemyMover : MonoBehaviour
         CalculatePath(true);
     }
 
+    void OnParticleCollision(GameObject other)
+    {
+        ProcessHit(other.GetComponentInParent<Weapon>());
+    }
+
+
     void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
         pathfinder = FindObjectOfType<Pathfinder>();
     }
-
-
+    private void ProcessHit(Weapon weapon)
+    {
+        if (weapon.HasSlow && !isSlowed)
+        {
+            speed -= weapon.Slow;
+            isSlowed = true;
+        }
+    }
 
     void CalculatePath(bool resetPath)
     {
