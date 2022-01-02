@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 449276134389996310}
   - component: {fileID: 449276134389996305}
   m_Layer: 0
-  m_Name: TowerBottomMesh
+  m_Name: TowerBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 7368613359814491604}
   - component: {fileID: 5551104142464930898}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: BulletParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4944,7 +4944,7 @@ GameObject:
   - component: {fileID: 2821760146049045167}
   - component: {fileID: 3713460137696250512}
   m_Layer: 0
-  m_Name: TowerTopMesh
+  m_Name: TowerWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -21,7 +21,7 @@ public class EnemyMover : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        ProcessHit(other.GetComponentInParent<Weapon>());
+        StartCoroutine(ProcessHit(other.GetComponentInParent<Weapon>()));
     }
 
 
@@ -30,12 +30,19 @@ public class EnemyMover : MonoBehaviour
         gridManager = FindObjectOfType<GridManager>();
         pathfinder = FindObjectOfType<Pathfinder>();
     }
-    private void ProcessHit(Weapon weapon)
+    IEnumerator ProcessHit(Weapon weapon)
     {
         if (weapon.HasSlow && !isSlowed)
         {
+            Debug.Log("Slowed");
             speed -= weapon.Slow;
             isSlowed = true;
+
+            yield return new WaitForSeconds(weapon.SlowDuration);
+
+            Debug.Log("Slow Ended");
+            speed += weapon.Slow;
+            isSlowed = false;
         }
     }
 
