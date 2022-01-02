@@ -40,7 +40,7 @@ public class Tile : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (currentState == State.VACANT)
+        if (currentState == State.VACANT && !towerMenu.IsOpened)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -52,12 +52,12 @@ public class Tile : MonoBehaviour
                 InstantiatePrefabOnTile(obstaclePrefab, State.OBSTACLE_PLACED);
             }
         }
-        else if (currentState == State.TOWER_PLACED && towerMenu != null)
+        else if (currentState == State.TOWER_PLACED)
         {
             // Display tower menu and bind currently selected tower to UI
             if (Input.GetMouseButtonDown(0))
             {
-                towerMenu.SetVisibility(true);
+                towerMenu.ToggleVisibility(true);
                 towerMenu.BindSelectedTower(placedObject);
             }
         }

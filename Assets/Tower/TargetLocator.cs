@@ -1,20 +1,46 @@
+using System;
 using UnityEngine;
 
 public class TargetLocator : MonoBehaviour
 {
-    [SerializeField] Transform weapon;
+    [SerializeField] Transform weaponPrefab;
+    [SerializeField] ParticleSystem bulletParticleSystem;
 
     Transform target;
+    Weapon weapon;
+
+    void Awake()
+    {
+        weapon = weaponPrefab.GetComponent<Weapon>();
+    }
 
     void Update()
     {
         FindClosestTarget();
-        AimWeapon();
+        AimAndFireWeapon();
     }
 
-    void AimWeapon()
+    void AimAndFireWeapon()
     {
-        weapon.LookAt(target);
+        float targetDistance = Vector3.Distance(transform.position, target.position);
+
+
+        if (targetDistance < weapon.Range)
+        {
+            weaponPrefab.LookAt(target);
+            FireWeapon(true);
+        }
+        else
+        {
+            FireWeapon(false);
+        }
+
+    }
+
+    private void FireWeapon(bool isActive)
+    {
+        var emissionModule = bulletParticleSystem.emission;
+        emissionModule.enabled = isActive;
     }
 
     void FindClosestTarget()

@@ -1299,8 +1299,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1744178044758045173, guid: 16926b7322b6e39449c59956ac915aa2, type: 3}
-  poolSize: 10
-  spawnTimer: 1
+  poolSize: 3
+  spawnTimer: 2
 --- !u!1 &580965586
 GameObject:
   m_ObjectHideFlags: 0

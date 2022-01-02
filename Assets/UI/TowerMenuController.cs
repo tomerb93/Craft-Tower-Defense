@@ -3,6 +3,8 @@ using UnityEngine.UIElements;
 
 public class TowerMenuController : MonoBehaviour
 {
+    public bool IsOpened { get { return isOpened; } }
+
     Button addAttackButton;
     Button addSpeedButton;
     Button addSlowButton;
@@ -10,6 +12,8 @@ public class TowerMenuController : MonoBehaviour
 
     VisualElement root;
     Weapon towerWeapon;
+
+    bool isOpened = false;
 
     void Awake()
     {
@@ -25,26 +29,24 @@ public class TowerMenuController : MonoBehaviour
         addSlowButton.clicked += AddSlowButtonPressed;
         closeButton.clicked += HideWindow;
 
-        SetVisibility(false);
+        ToggleVisibility(false);
     }
 
 
-    public void SetVisibility(bool shouldDisplay)
+    public void ToggleVisibility(bool shouldDisplay)
     {
+        isOpened = shouldDisplay;
         root.style.display = shouldDisplay ? DisplayStyle.Flex : DisplayStyle.None;
     }
 
     public void BindSelectedTower(GameObject tower)
     {
         towerWeapon = tower.GetComponentInChildren<Weapon>();
-
-        Debug.Log("Tower is :" + tower);
-        Debug.Log("Tower weapon is " + towerWeapon);
     }
 
     void HideWindow()
     {
-        SetVisibility(false);
+        ToggleVisibility(false);
     }
 
     void AddAttackButtonPressed()
@@ -60,5 +62,11 @@ public class TowerMenuController : MonoBehaviour
     void AddSlowButtonPressed()
     {
         towerWeapon.AddSlow(0.05f);
+    }
+
+    public enum State
+    {
+        OPENED,
+        CLOSED
     }
 }

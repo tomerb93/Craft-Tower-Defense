@@ -126,7 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ac841d33ebcea49a06e0fedad52df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 4548676982742773714}
+  weaponPrefab: {fileID: 4548676982742773714}
+  bulletParticleSystem: {fileID: 7368613359814491604}
 --- !u!1 &3351952429975896386
 GameObject:
   m_ObjectHideFlags: 0
@@ -5028,5 +5029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0.5
   speed: 2
+  range: 15
   weaponName: Weapon 1
   slow: 0.5
+  slowDuration: 1
