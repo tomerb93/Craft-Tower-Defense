@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyMover : MonoBehaviour
 {
     [SerializeField] [Range(0f, 10f)] float speed = 1f;
+    float currentSpeed = 1f;
 
     List<Node> path = new List<Node>();
 
@@ -14,6 +15,8 @@ public class EnemyMover : MonoBehaviour
 
     void OnEnable()
     {
+        isSlowed = false;
+        currentSpeed = speed;
         ReturnToStart();
         CalculatePath(true);
     }
@@ -33,12 +36,12 @@ public class EnemyMover : MonoBehaviour
     {
         if (weapon.HasSlow && !isSlowed)
         {
-            speed -= weapon.Slow;
+            currentSpeed -= weapon.Slow;
             isSlowed = true;
 
             yield return new WaitForSeconds(weapon.SlowDuration);
 
-            speed += weapon.Slow;
+            currentSpeed += weapon.Slow;
             isSlowed = false;
         }
     }
@@ -72,7 +75,7 @@ public class EnemyMover : MonoBehaviour
 
             while (travelPercent < 1f)
             {
-                travelPercent += Time.deltaTime * speed;
+                travelPercent += Time.deltaTime * currentSpeed;
                 transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
                 yield return new WaitForEndOfFrame();
             }

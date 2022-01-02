@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public float Damage { get { return damage; } set { } }
+    public float Damage { get { return damage; } }
+    public float Speed { get { return speed; } }
     public string Name { get { return weaponName; } }
     public float Slow { get { return slow; } }
     public float SlowDuration { get { return slowDuration; } }
@@ -36,5 +37,16 @@ public class Weapon : MonoBehaviour
     public void AddDamage(float amount)
     {
         damage += amount;
+    }
+
+    public void AddSpeed(float amount)
+    {
+        speed += amount;
+        SetParticleSystemProperties();
+    }
+
+    public void AddSlow(float amount)
+    {
+        slow += amount;
     }
 }

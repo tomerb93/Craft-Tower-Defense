@@ -1,7 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 1; align-items: flex-end; justify-content: flex-end;">
-        <ui:VisualElement style="flex-basis: auto; height: 180px; flex-direction: column; width: 165px; align-items: flex-start;">
-            <ui:Button text="Attack" display-tooltip-when-elided="true" name="upg-attack-button" style="height: 58px; width: 66px;" />
-        </ui:VisualElement>
-    </ui:VisualElement>
-</ui:UXML>

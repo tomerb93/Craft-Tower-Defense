@@ -33,3 +33,7 @@ Initial tower and obstacle prefab implemented, which can be instantiated using m
 ![Initial weapon class](READMEMedia/InitialWeaponClass.jpg)
 
 Tower weapon implemented. Towers are able to slow, damage, and destroy enemies.
+
+![Tower menu](https://j.gifs.com/K8mwzY.gif)
+
+Implemented initial Tower Menu UI. The player can select any active towers on the field and a menu opens with options to strengthen the selected tower with various stats.
