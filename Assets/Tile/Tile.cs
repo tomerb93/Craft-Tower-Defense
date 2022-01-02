@@ -11,11 +11,17 @@ public class Tile : MonoBehaviour
     GridManager gridManager;
     Pathfinder pathfinder;
     Vector2Int coordinates;
+    TowerMenuController towerMenu;
+
+    GameObject placedObject;
+
+    State currentState = State.VACANT;
 
     void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
         pathfinder = FindObjectOfType<Pathfinder>();
+        towerMenu = FindObjectOfType<TowerMenuController>();
     }
 
     void Start()
@@ -27,30 +33,52 @@ public class Tile : MonoBehaviour
             if (!isPlaceable)
             {
                 gridManager.BlockNode(coordinates);
+                currentState = State.BLOCKED;
             }
         }
     }
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (currentState == State.VACANT)
         {
-            InstantiatePrefabOnTile(towerPrefab);
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                InstantiatePrefabOnTile(towerPrefab, State.TOWER_PLACED);
+            }
 
-        if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1))
+            {
+                InstantiatePrefabOnTile(obstaclePrefab, State.OBSTACLE_PLACED);
+            }
+        }
+        else if (currentState == State.TOWER_PLACED && towerMenu != null)
         {
-            InstantiatePrefabOnTile(obstaclePrefab);
+            // Display tower menu and bind currently selected tower to UI
+            if (Input.GetMouseButtonDown(0))
+            {
+                towerMenu.SetVisibility(true);
+                towerMenu.BindSelectedTower(placedObject);
+            }
         }
     }
 
-    private void InstantiatePrefabOnTile(GameObject prefab)
+    private void InstantiatePrefabOnTile(GameObject prefab, State newState)
     {
-        if (gridManager.GetNode(coordinates).isWalkable && !pathfinder.WillBlockPath(coordinates))
+        if (!pathfinder.WillBlockPath(coordinates))
         {
-            Instantiate(prefab, transform.position, Quaternion.identity);
+            placedObject = Instantiate(prefab, transform.position, Quaternion.identity);
             gridManager.BlockNode(coordinates);
             pathfinder.BroadcastRecalculatePath();
+            currentState = newState;
         }
+    }
+
+    enum State
+    {
+        VACANT,
+        BLOCKED,
+        TOWER_PLACED,
+        OBSTACLE_PLACED
     }
 }

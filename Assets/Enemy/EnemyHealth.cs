@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -21,8 +18,6 @@ public class EnemyHealth : MonoBehaviour
 
     void ProcessHit(Weapon weapon)
     {
-        Debug.Log($"{weapon.Name} has done {weapon.Damage}");
-
         currentHitPoints -= weapon.Damage;
 
         if (currentHitPoints <= 0)

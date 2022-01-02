@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,13 +33,11 @@ public class EnemyMover : MonoBehaviour
     {
         if (weapon.HasSlow && !isSlowed)
         {
-            Debug.Log("Slowed");
             speed -= weapon.Slow;
             isSlowed = true;
 
             yield return new WaitForSeconds(weapon.SlowDuration);
 
-            Debug.Log("Slow Ended");
             speed += weapon.Slow;
             isSlowed = false;
         }

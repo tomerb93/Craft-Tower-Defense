@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon: MonoBehaviour
+public class Weapon : MonoBehaviour
 {
-    public float Damage { get { return damage; } }
+    public float Damage { get { return damage; } set { } }
     public string Name { get { return weaponName; } }
     public float Slow { get { return slow; } }
     public float SlowDuration { get { return slowDuration; } }
@@ -16,7 +13,7 @@ public class Weapon: MonoBehaviour
     [SerializeField] string weaponName = "Weapon 1";
     [SerializeField] float slow = 0.1f;
     [SerializeField] float slowDuration = 1f;
-    
+
 
     ParticleSystem bulletParticleSystem;
 
@@ -34,5 +31,10 @@ public class Weapon: MonoBehaviour
     {
         var emission = bulletParticleSystem.emission;
         emission.rateOverTime = speed;
+    }
+
+    public void AddDamage(float amount)
+    {
+        damage += amount;
     }
 }
