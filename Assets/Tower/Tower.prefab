@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0730cf350d4f08647af87e88464b598b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 50
 --- !u!1 &3351952429975896386
 GameObject:
   m_ObjectHideFlags: 0
@@ -5040,9 +5041,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6096c8c270ecc734cb26adf9880042dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0.5
+  damage: 1
   speed: 2
-  range: 15
+  range: 20
   weaponName: Weapon 1
-  slow: 0.5
+  slow: 0
   slowDuration: 1

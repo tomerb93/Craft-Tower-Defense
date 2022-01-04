@@ -37,3 +37,7 @@ Tower weapon implemented. Towers are able to slow, damage, and destroy enemies.
 ![Tower menu](https://j.gifs.com/K8mwzY.gif)
 
 Implemented initial Tower Menu UI. The player can select any active towers on the field and a menu opens with options to strengthen the selected tower with various stats.
+
+![Bank menu](https://j.gifs.com/mqGAJ9.gif)
+
+Obstacles and towers come at a cost and the player can now see remaining resources (current balance and obstacle count)
