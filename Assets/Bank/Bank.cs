@@ -1,21 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bank : MonoBehaviour
 {
     public int CurrentBalance { get { return currentBalance; } }
-    public int CurrentTowersLeft { get { return currentTowersLeft; } }
+    public int CurrentObstacleCount { get { return currentObstacleCount; } }
 
     [SerializeField] int startingBalance = 150;
-    [SerializeField] int startingTowerCount = 3;
+    [SerializeField] int startingObstacleCount = 3;
+
+    BankMenuController bankMenu;
 
     int currentBalance;
-    int currentTowersLeft;
+    int currentObstacleCount;
 
     void Awake()
     {
+        bankMenu = FindObjectOfType<BankMenuController>();    
+        
         currentBalance = startingBalance;
-        currentTowersLeft = startingTowerCount;
+        currentObstacleCount = startingObstacleCount;
+    }
+
+    void Start()
+    {
+    }
+
+    public void Deposit(int amount)
+    {
+        currentBalance += Mathf.Abs(amount);
+        bankMenu.UpdateDisplay();
+    }
+
+    public void Withdraw(int amount)
+    {
+        currentBalance -= Mathf.Abs(amount);
+        bankMenu.UpdateDisplay();
     }
 }

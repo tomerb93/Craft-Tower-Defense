@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlaceable: 1
   obstaclePrefab: {fileID: 1137958906326775787, guid: 4f920e5bb7763084e957200d2a458314, type: 3}
-  towerPrefab: {fileID: 449276135363878975, guid: 1644d75a60faa384db44af389bfdfa22, type: 3}
+  towerPrefab: {fileID: 84722174602870356, guid: 1644d75a60faa384db44af389bfdfa22, type: 3}
 --- !u!1 &5409171561809819792
 GameObject:
   m_ObjectHideFlags: 0

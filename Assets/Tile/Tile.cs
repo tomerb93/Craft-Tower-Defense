@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -6,16 +7,14 @@ public class Tile : MonoBehaviour
 
     [SerializeField] bool isPlaceable;
     [SerializeField] GameObject obstaclePrefab;
-    [SerializeField] GameObject towerPrefab;
+    [SerializeField] Tower towerPrefab;
 
     GridManager gridManager;
     Pathfinder pathfinder;
     Vector2Int coordinates;
     TowerMenuController towerMenu;
-
-    GameObject placedObject;
-
-    State currentState = State.VACANT;
+    Tower placedTower;
+    TileState state = TileState.VACANT;
 
     void Awake()
     {
@@ -33,48 +32,62 @@ public class Tile : MonoBehaviour
             if (!isPlaceable)
             {
                 gridManager.BlockNode(coordinates);
-                currentState = State.BLOCKED;
+                state = TileState.BLOCKED;
             }
         }
     }
 
     void OnMouseOver()
     {
-        if (currentState == State.VACANT && !towerMenu.IsOpened)
+        if (state == TileState.VACANT && !towerMenu.IsOpened)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                InstantiatePrefabOnTile(towerPrefab, State.TOWER_PLACED);
+                InstantiateTower(towerPrefab);
             }
 
             if (Input.GetMouseButtonDown(1))
             {
-                InstantiatePrefabOnTile(obstaclePrefab, State.OBSTACLE_PLACED);
+                InstantiateObstacle(obstaclePrefab);
             }
         }
-        else if (currentState == State.TOWER_PLACED)
+        else if (state == TileState.TOWER_PLACED)
         {
             // Display tower menu and bind currently selected tower to UI
             if (Input.GetMouseButtonDown(0))
             {
                 towerMenu.ToggleVisibility(true);
-                towerMenu.BindSelectedTower(placedObject);
+                towerMenu.BindSelectedTower(placedTower);
             }
         }
     }
 
-    private void InstantiatePrefabOnTile(GameObject prefab, State newState)
+    void InstantiateTower(Tower towerPrefab)
     {
         if (!pathfinder.WillBlockPath(coordinates))
         {
-            placedObject = Instantiate(prefab, transform.position, Quaternion.identity);
-            gridManager.BlockNode(coordinates);
-            pathfinder.BroadcastRecalculatePath();
-            currentState = newState;
+            placedTower = towerPrefab.CreateTower(towerPrefab, transform.position);
+            if (placedTower != null)
+            {
+                gridManager.BlockNode(coordinates);
+                pathfinder.BroadcastRecalculatePath();
+                state = TileState.TOWER_PLACED;
+            }
         }
     }
 
-    enum State
+    void InstantiateObstacle(GameObject obstaclePrefab)
+    {
+        if (!pathfinder.WillBlockPath(coordinates))
+        {
+            Instantiate(obstaclePrefab, transform.position, Quaternion.identity);
+            gridManager.BlockNode(coordinates);
+            pathfinder.BroadcastRecalculatePath();
+            state = TileState.OBSTACLE_PLACED;
+        }
+    }
+
+    enum TileState
     {
         VACANT,
         BLOCKED,

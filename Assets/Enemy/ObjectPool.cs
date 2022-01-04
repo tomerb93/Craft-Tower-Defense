@@ -6,6 +6,7 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] [Range(0, 20)] int poolSize = 5;
     [SerializeField] float spawnTimer = 1f;
+    [SerializeField] float startTimer = 5f;
 
     GameObject[] pool;
 
@@ -18,6 +19,14 @@ public class ObjectPool : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnEnemy());
+    }
+
+    void Update()
+    {
+        if(startTimer > 0)
+        {
+            startTimer -= Time.deltaTime;
+        }
     }
 
     void PopulatePool()
@@ -33,6 +42,7 @@ public class ObjectPool : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
+        yield return new WaitForSeconds(startTimer);
         while (true)
         {
             EnableInactiveObjectsInPool();

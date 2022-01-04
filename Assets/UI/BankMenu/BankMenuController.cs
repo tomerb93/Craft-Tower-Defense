@@ -6,20 +6,27 @@ using UnityEngine.UIElements;
 public class BankMenuController : MonoBehaviour
 {
     TextField balance;
-    TextField towersLeft;
+    TextField obstaclesLeft;
+
+    Bank bank;
 
     void Awake()
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
-        Bank bank = FindObjectOfType<Bank>();
+        bank = FindObjectOfType<Bank>();
 
         balance = root.Q<TextField>("balance");
-        towersLeft = root.Q<TextField>("towers-left");
+        obstaclesLeft = root.Q<TextField>("obstacles-left");
 
         if (bank != null)
         {
-            balance.value = bank.CurrentBalance.ToString();
-            towersLeft.value = bank.CurrentTowersLeft.ToString();
+            UpdateDisplay();
         }
+    }
+
+    public void UpdateDisplay()
+    {
+        balance.value = bank.CurrentBalance.ToString();
+        obstaclesLeft.value = bank.CurrentObstacleCount.ToString();
     }
 }

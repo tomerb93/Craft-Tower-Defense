@@ -2527,6 +2527,10 @@ PrefabInstance:
       propertyPath: isPlaceable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8043167319255650516, guid: 1fea6738a1fce144daadab8c21c32233, type: 3}
+      propertyPath: towerPrefab
+      value: 
+      objectReference: {fileID: 84722174602870356, guid: 1644d75a60faa384db44af389bfdfa22, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fea6738a1fce144daadab8c21c32233, type: 3}
 --- !u!1001 &1244326728
@@ -2765,7 +2769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingBalance: 150
-  startingTowerCount: 3
+  startingObstacleCount: 3
 --- !u!4 &1342452017
 Transform:
   m_ObjectHideFlags: 0

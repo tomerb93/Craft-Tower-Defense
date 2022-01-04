@@ -2,7 +2,7 @@
     <ui:VisualElement style="flex-grow: 1; justify-content: flex-end; align-items: flex-start; -unity-text-outline-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);">
         <ui:VisualElement style="align-items: flex-start; height: 50px; width: 523px; justify-content: flex-start; font-size: 20px; flex-direction: row; background-color: rgba(0, 0, 0, 0);">
             <ui:TextField picking-mode="Ignore" label="Balance" value="filler text" text="filler text" name="balance" style="height: 42px; width: 244px;" />
-            <ui:TextField picking-mode="Ignore" label="Towers Left" value="filler text" text="filler text" name="towers-left" style="height: 42px; width: 244px;" />
+            <ui:TextField picking-mode="Ignore" label="Obstacles Left" value="filler text" text="filler text" name="obstacles-left" style="height: 42px; width: 244px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

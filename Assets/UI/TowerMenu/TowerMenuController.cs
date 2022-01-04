@@ -39,7 +39,7 @@ public class TowerMenuController : MonoBehaviour
         root.style.display = shouldDisplay ? DisplayStyle.Flex : DisplayStyle.None;
     }
 
-    public void BindSelectedTower(GameObject tower)
+    public void BindSelectedTower(Tower tower)
     {
         towerWeapon = tower.GetComponentInChildren<Weapon>();
     }
