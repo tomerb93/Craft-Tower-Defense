@@ -1301,6 +1301,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1744178044758045173, guid: 16926b7322b6e39449c59956ac915aa2, type: 3}
   poolSize: 3
   spawnTimer: 2
+  startTimer: 5
 --- !u!1 &580965586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,7 +1335,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: acb83d96303f11842ac04046648434aa, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: a70acf08f4ca8304b87522907b3728ff, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 1
 --- !u!4 &580965588
 Transform:
   m_ObjectHideFlags: 0

@@ -25,15 +25,27 @@ public class Bank : MonoBehaviour
     {
     }
 
-    public void Deposit(int amount)
+    public void DepositBalance(int amount)
     {
         currentBalance += Mathf.Abs(amount);
         bankMenu.UpdateDisplay();
     }
 
-    public void Withdraw(int amount)
+    public void WithdrawBalance(int amount)
     {
         currentBalance -= Mathf.Abs(amount);
+        bankMenu.UpdateDisplay();
+    }
+
+    public void IncreaseObstacleCount(int amount)
+    {
+        currentObstacleCount += Mathf.Abs(amount);
+        bankMenu.UpdateDisplay();
+    }
+
+    public void DecreaseObstacleCount(int amount)
+    {
+        currentObstacleCount -= Mathf.Abs(amount);
         bankMenu.UpdateDisplay();
     }
 }

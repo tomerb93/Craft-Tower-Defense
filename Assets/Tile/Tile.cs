@@ -6,7 +6,7 @@ public class Tile : MonoBehaviour
     public bool IsPlaceable { get { return isPlaceable; } }
 
     [SerializeField] bool isPlaceable;
-    [SerializeField] GameObject obstaclePrefab;
+    [SerializeField] Obstacle obstaclePrefab;
     [SerializeField] Tower towerPrefab;
 
     GridManager gridManager;
@@ -76,14 +76,17 @@ public class Tile : MonoBehaviour
         }
     }
 
-    void InstantiateObstacle(GameObject obstaclePrefab)
+    void InstantiateObstacle(Obstacle obstaclePrefab)
     {
         if (!pathfinder.WillBlockPath(coordinates))
         {
-            Instantiate(obstaclePrefab, transform.position, Quaternion.identity);
-            gridManager.BlockNode(coordinates);
-            pathfinder.BroadcastRecalculatePath();
-            state = TileState.OBSTACLE_PLACED;
+            bool success = obstaclePrefab.CreateObstacle(obstaclePrefab, transform.position);
+            if (success)
+            {
+                gridManager.BlockNode(coordinates);
+                pathfinder.BroadcastRecalculatePath();
+                state = TileState.OBSTACLE_PLACED;
+            }
         }
     }
 
