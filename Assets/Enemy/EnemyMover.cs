@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 public class EnemyMover : MonoBehaviour
 {
     [SerializeField] [Range(0f, 10f)] float speed = 1f;
@@ -11,6 +12,7 @@ public class EnemyMover : MonoBehaviour
 
     GridManager gridManager;
     Pathfinder pathfinder;
+    Enemy enemy;
     bool isSlowed;
 
     void OnEnable()
@@ -32,6 +34,12 @@ public class EnemyMover : MonoBehaviour
         gridManager = FindObjectOfType<GridManager>();
         pathfinder = FindObjectOfType<Pathfinder>();
     }
+
+    void Start()
+    {
+        enemy = GetComponent<Enemy>();
+    }
+
     IEnumerator ProcessHit(Weapon weapon)
     {
         if (weapon.HasSlow && !isSlowed)
@@ -81,9 +89,16 @@ public class EnemyMover : MonoBehaviour
             }
         }
 
+        FinishPath();
+    }
+
+    void FinishPath()
+    {
         // disable instead of destroying
         gameObject.SetActive(false);
+        enemy.StealHitpoints();
     }
+
     void ReturnToStart()
     {
         transform.position = gridManager.GetPositionFromCoordinates(pathfinder.StartCoordinates);

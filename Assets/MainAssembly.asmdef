@@ -1,8 +1,9 @@
 {
-    "name": "Assembly",
+    "name": "MainAssembly",
     "rootNamespace": "",
     "references": [
-        "UnityEngine.UIElementsModule"
+        "UnityEngine.UIElementsModule",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

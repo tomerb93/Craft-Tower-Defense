@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] int cost = 50;
+    [SerializeField] readonly int cost = 50;
 
     public Tower CreateTower(Tower tower, Vector3 position)
     {
