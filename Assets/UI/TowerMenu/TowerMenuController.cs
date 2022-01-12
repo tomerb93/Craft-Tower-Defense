@@ -36,14 +36,14 @@ public class TowerMenuController : MonoBehaviour
         QueryViewControls();
         SetButtonText();
         SetOnEventHandlers();
-        ToggleVisibility(false);
+        Hide();
     }
 
-    private void SetButtonText()
+    void SetButtonText()
     {
-        addAttackButton.text = addAttackButton.text + ", " + currentAttackCost;
-        addSpeedButton.text = addSpeedButton.text + ", " + currentSpeedCost;
-        addSlowButton.text = addSlowButton.text + ", " + currentSlowCost;
+        addAttackButton.text = "Attack, " + currentAttackCost;
+        addSpeedButton.text = "Speed, " + currentSpeedCost;
+        addSlowButton.text = "Slow, " + currentSlowCost;
     }
 
     void SetOnEventHandlers()
@@ -51,7 +51,7 @@ public class TowerMenuController : MonoBehaviour
         addAttackButton.clicked += AddAttackButtonPressed;
         addSpeedButton.clicked += AddSpeedButtonPressed;
         addSlowButton.clicked += AddSlowButtonPressed;
-        closeButton.clicked += HideWindow;
+        closeButton.clicked += Hide;
     }
 
     void QueryViewControls()
@@ -62,10 +62,10 @@ public class TowerMenuController : MonoBehaviour
         closeButton = root.Q<Button>("close-button");
     }
 
-    public void ToggleVisibility(bool shouldDisplay)
+    public void ToggleVisibility(bool display)
     {
-        isOpened = shouldDisplay;
-        root.style.display = shouldDisplay ? DisplayStyle.Flex : DisplayStyle.None;
+        isOpened = display;
+        root.style.display = display ? DisplayStyle.Flex : DisplayStyle.None;
     }
 
     public void BindSelectedTower(Tower tower)
@@ -73,29 +73,39 @@ public class TowerMenuController : MonoBehaviour
         towerWeapon = tower.GetComponentInChildren<Weapon>();
     }
 
-    void HideWindow()
+    void Hide()
     {
         ToggleVisibility(false);
     }
 
     void AddAttackButtonPressed()
     {
-        towerWeapon.AddDamage(0.25f);
-        bank.WithdrawBalance(currentAttackCost);
-        currentAttackCost += 2;
+        if (bank.WithdrawBalance(currentAttackCost))
+        {
+            towerWeapon.AddDamage(0.25f);
+            currentAttackCost += 2;
+            SetButtonText();
+        }
     }
 
     void AddSpeedButtonPressed()
     {
-        towerWeapon.AddSpeed(0.5f);
-        bank.WithdrawBalance(currentSpeedCost);
-        currentSpeedCost++;
+        if (bank.WithdrawBalance(currentSpeedCost))
+        {
+            towerWeapon.AddSpeed(0.5f);
+            currentSpeedCost++;
+            SetButtonText();
+        }
     }
 
     void AddSlowButtonPressed()
     {
-        towerWeapon.AddSlow(0.05f);
-        bank.WithdrawBalance(currentSlowCost);
-        currentSlowCost += 5;
+        if (bank.WithdrawBalance(currentSlowCost))
+        {
+            towerWeapon.AddSlow(0.05f);
+            currentSlowCost += 5;
+            SetButtonText();
+        }
+        
     }
 }

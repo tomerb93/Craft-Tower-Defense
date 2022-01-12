@@ -1,8 +1,19 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] float reloadOnLossTimer = 2f;
+
+    AlertController alert;
+
+    void Awake()
+    {
+        alert = FindObjectOfType<AlertController>();
+    }
+
     void Update()
     {
         if (Input.GetKey(KeyCode.R))
@@ -11,9 +22,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void ReloadLevel()
+    public void ReloadLevel()
     {
         int currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneBuildIndex);
+    }
+
+    public void ProcessLoss()
+    {
+        StartCoroutine(ProcessLossRequest());
+    }
+
+    IEnumerator ProcessLossRequest()
+    {
+        alert.Alert("You lose! Reloading level...");
+
+        yield return new WaitForSeconds(reloadOnLossTimer);
+        
+        ReloadLevel();
     }
 }

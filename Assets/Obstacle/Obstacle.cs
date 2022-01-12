@@ -14,9 +14,8 @@ public class Obstacle : MonoBehaviour
             return false;
         }
 
-        if (bank.CurrentObstacleCount > 0)
+        if (bank.DecreaseObstacleCount(1))
         {
-            bank.DecreaseObstacleCount(1);
             Instantiate(obstacle, position, Quaternion.identity);
             return true;
         }

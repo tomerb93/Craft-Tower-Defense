@@ -25,7 +25,8 @@ public class EnemyMover : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        StartCoroutine(ProcessHit(other.GetComponentInParent<Weapon>()));
+        if (gameObject.activeInHierarchy)
+            StartCoroutine(ProcessHit(other.GetComponentInParent<Weapon>()));
     }
 
 

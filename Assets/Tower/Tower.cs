@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] readonly int cost = 50;
+    [SerializeField] int cost = 50;
 
     public Tower CreateTower(Tower tower, Vector3 position)
     {
@@ -15,9 +15,8 @@ public class Tower : MonoBehaviour
             return null;
         }
 
-        if (bank.CurrentBalance >= cost)
+        if (bank.WithdrawBalance(cost))
         {
-            bank.WithdrawBalance(cost);
             return Instantiate(tower, position, Quaternion.identity);
         }
 

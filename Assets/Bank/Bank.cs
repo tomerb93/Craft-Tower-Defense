@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class Bank : MonoBehaviour
@@ -11,6 +13,7 @@ public class Bank : MonoBehaviour
     [SerializeField] int startingHitpoints = 10;
 
     BankMenuController bankMenu;
+    GameManager game;
 
     int currentBalance;
     int currentObstacleCount;
@@ -18,7 +21,8 @@ public class Bank : MonoBehaviour
 
     void Awake()
     {
-        bankMenu = FindObjectOfType<BankMenuController>();    
+        bankMenu = FindObjectOfType<BankMenuController>();
+        game = FindObjectOfType<GameManager>();
         
         currentBalance = startingBalance;
         currentObstacleCount = startingObstacleCount;
@@ -31,10 +35,13 @@ public class Bank : MonoBehaviour
         bankMenu.UpdateDisplay();
     }
 
-    public void WithdrawBalance(int amount)
+    public bool WithdrawBalance(int amount)
     {
+        if (currentBalance < amount) return false;
+
         currentBalance -= Mathf.Abs(amount);
         bankMenu.UpdateDisplay();
+        return true;
     }
 
     public void IncreaseObstacleCount(int amount)
@@ -43,14 +50,22 @@ public class Bank : MonoBehaviour
         bankMenu.UpdateDisplay();
     }
 
-    public void DecreaseObstacleCount(int amount)
+    public bool DecreaseObstacleCount(int amount)
     {
+        if (currentObstacleCount < amount) return false;
+
         currentObstacleCount -= Mathf.Abs(amount);
         bankMenu.UpdateDisplay();
+        return true;
     }
 
     public void DecreaseHitpoints(int amount)
     {
         currentHitpoints -= Mathf.Abs(amount);
+
+        if (currentHitpoints <= 0)
+        {
+            game.ProcessLoss();
+        }
     }
 }
