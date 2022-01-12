@@ -80,7 +80,7 @@ public class TowerMenuController : MonoBehaviour
 
     void AddAttackButtonPressed()
     {
-        towerWeapon.AddDamage(0.5f);
+        towerWeapon.AddDamage(0.25f);
         bank.WithdrawBalance(currentAttackCost);
         currentAttackCost += 2;
     }

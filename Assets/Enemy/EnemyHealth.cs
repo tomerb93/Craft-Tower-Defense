@@ -3,14 +3,14 @@ using UnityEngine;
 [RequireComponent(typeof(Enemy))]
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] float maxHitPoints = 3;
+    [SerializeField] float startingHitpoints = 3;
 
     float currentHitPoints;
     Enemy enemy;
 
     void OnEnable()
     {
-        currentHitPoints = maxHitPoints;
+        currentHitPoints = startingHitpoints;
     }
 
     void Start()
