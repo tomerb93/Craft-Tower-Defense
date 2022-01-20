@@ -11,17 +11,17 @@ public class Pathfinder : MonoBehaviour
 
     Node destinationNode;
     Node currentSearchNode;
-
     Queue<Node> frontier = new Queue<Node>();
     Dictionary<Vector2Int, Node> reached = new Dictionary<Vector2Int, Node>();
-
     Vector2Int[] directions = { Vector2Int.right, Vector2Int.left, Vector2Int.up, Vector2Int.down, new Vector2Int(1, 1), new Vector2Int(1, -1), new Vector2Int(-1, -1), new Vector2Int(-1, 1) };
     GridManager gridManager;
     Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
+    AlertController alert;
 
     void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
+        alert = FindObjectOfType<AlertController>();
 
         if (gridManager != null)
         {
@@ -124,11 +124,10 @@ public class Pathfinder : MonoBehaviour
             List<Node> tempPath = GetNewPath();
             grid[coordinates].isWalkable = previousState;
 
-            // path wasn't able to be built, node will block path
+            // Path wasn't able to be built, node will block path
             if (tempPath.Count <= 1)
             {
-                // todo: add UI for this
-                Debug.Log("Not allowed. Placing here will block the path.");
+                alert.Alert("Not allowed. Placing here will block the path.");
                 GetNewPath();
                 return true;
             }

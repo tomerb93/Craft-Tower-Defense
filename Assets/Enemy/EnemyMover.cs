@@ -26,9 +26,10 @@ public class EnemyMover : MonoBehaviour
     void OnParticleCollision(GameObject other)
     {
         if (gameObject.activeInHierarchy)
+        {
             StartCoroutine(ProcessHit(other.GetComponentInParent<Weapon>()));
+        }
     }
-
 
     void Awake()
     {
@@ -98,6 +99,7 @@ public class EnemyMover : MonoBehaviour
         // disable instead of destroying
         gameObject.SetActive(false);
         enemy.StealHitpoints();
+        // TODO: Add life crystal mesh to at endCoordinates & add particle system effect
     }
 
     void ReturnToStart()

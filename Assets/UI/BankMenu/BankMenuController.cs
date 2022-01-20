@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class BankMenuController : MonoBehaviour
 {
+    // TODO: Change TextFields to label and update text (Easier to edit display this way)
     TextField balance;
     TextField obstaclesLeft;
 
