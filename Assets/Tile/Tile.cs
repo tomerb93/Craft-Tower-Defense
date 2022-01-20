@@ -53,13 +53,25 @@ public class Tile : MonoBehaviour
         }
         else if (state == TileState.TOWER_PLACED)
         {
-            // Display tower menu and bind currently selected tower to UI
             if (Input.GetMouseButtonDown(0))
             {
-                towerMenu.ToggleVisibility(true);
-                towerMenu.BindSelectedTower(placedTower);
+                BindAndDisplaySelectedTowerMenu();
             }
         }
+        else
+        {
+            // Tower is selected and we click on anywhere but another tower
+            if (Input.GetMouseButtonDown(0))
+            {
+                towerMenu.ToggleVisibility(false);
+            }
+        }
+    }
+
+    void BindAndDisplaySelectedTowerMenu()
+    {
+        towerMenu.ToggleVisibility(true);
+        towerMenu.BindSelectedTower(placedTower);
     }
 
     void InstantiateTower(Tower towerPrefab)

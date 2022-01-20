@@ -2121,8 +2121,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1744178044758045173, guid: 16926b7322b6e39449c59956ac915aa2, type: 3}
   poolSize: 10
-  spawnTimer: 1
-  startTimer: 5
+  waveCountdown: 0
+  timeBetweenWaves: 5
+  waves:
+  - name: First wave
+    enemy: {fileID: -3773044356339577192, guid: 16926b7322b6e39449c59956ac915aa2, type: 3}
+    count: 2
+    rate: 1
+  - name: Second wave
+    enemy: {fileID: -3773044356339577192, guid: 16926b7322b6e39449c59956ac915aa2, type: 3}
+    count: 5
+    rate: 1.5
+  - name: Third wave
+    enemy: {fileID: -3773044356339577192, guid: 16926b7322b6e39449c59956ac915aa2, type: 3}
+    count: 10
+    rate: 1.8
+  - name: Final wave
+    enemy: {fileID: -3773044356339577192, guid: 16926b7322b6e39449c59956ac915aa2, type: 3}
+    count: 20
+    rate: 3
 --- !u!1001 &575900254
 PrefabInstance:
   m_ObjectHideFlags: 0

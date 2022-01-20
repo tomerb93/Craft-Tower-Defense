@@ -1,64 +1,106 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
+    public enum SpawnState {  SPAWNING, WAITING, COUNTING };
+
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] [Range(0, 20)] int poolSize = 5;
-    [SerializeField] float spawnTimer = 1f;
-    [SerializeField] float startTimer = 5f;
+    [SerializeField] float waveCountdown;
+    [SerializeField] float timeBetweenWaves = 5f;
+    [SerializeField] Wave[] waves;
 
-    GameObject[] pool;
-
-    void Awake()
-    {
-        PopulatePool();
-    }
-
+    int nextWave;
+    SpawnState state = SpawnState.COUNTING;
+    float searchCountdown = 1f;
 
     void Start()
     {
-        StartCoroutine(SpawnEnemy());
+        waveCountdown = timeBetweenWaves;
     }
 
     void Update()
     {
-        if(startTimer > 0)
+        if (state == SpawnState.WAITING)
         {
-            startTimer -= Time.deltaTime;
-        }
-    }
-
-    void PopulatePool()
-    {
-        pool = new GameObject[poolSize];
-
-        for (int i = 0; i < pool.Length; i++)
-        {
-            pool[i] = Instantiate(enemyPrefab, transform);
-            pool[i].SetActive(false);
-        }
-    }
-
-    IEnumerator SpawnEnemy()
-    {
-        yield return new WaitForSeconds(startTimer);
-        while (true)
-        {
-            EnableInactiveObjectsInPool();
-            yield return new WaitForSeconds(spawnTimer);
-        }
-    }
-
-    void EnableInactiveObjectsInPool()
-    {
-        for (int i = 0; i < pool.Length; i++)
-        {
-            if (!pool[i].activeInHierarchy)
+            if (!EnemyIsAlive())
             {
-                pool[i].SetActive(true);
+                // Begin a new round
+                WaveCompleted();
+            }
+            else
+            {
                 return;
             }
         }
+
+        if (waveCountdown <= 0)
+        {
+            if (state != SpawnState.SPAWNING)
+            {
+                StartCoroutine(SpawnWave(waves[nextWave]));
+            }
+        } else
+        {
+            waveCountdown -= Time.deltaTime;
+        }
+    }
+
+    void WaveCompleted()
+    {
+        Debug.Log("Wave Completed...");
+        // TODO: Alert player he's won and reward
+        if (nextWave + 1 > waves.Length - 1)
+        {
+            Debug.Log("All waves complete, looping..");
+            nextWave = 0;
+        }
+        else
+        {
+            nextWave++;
+        }
+
+        state = SpawnState.COUNTING;
+        waveCountdown = timeBetweenWaves;
+    }
+
+    IEnumerator SpawnWave(Wave wave)
+    {
+        Debug.Log("Spawning wave..");
+        state = SpawnState.SPAWNING;
+
+        for (int i = 0; i < wave.count; i++)
+        {
+            SpawnEnemy(wave.enemy);
+
+            yield return new WaitForSeconds(1f / wave.rate);
+        }
+
+        state = SpawnState.WAITING;
+    }
+
+    void SpawnEnemy(Enemy enemy)
+    {
+        Debug.Log("Spawning enemy..");
+
+        Instantiate(enemy, transform);
+    }
+
+    bool EnemyIsAlive()
+    {
+        searchCountdown -= Time.deltaTime;
+
+        if (searchCountdown <= 0f)
+        {
+            searchCountdown = 1f;
+            if (FindObjectOfType<Enemy>() == null)
+            {
+                return false;
+            }
+        }
+        
+        return true;
     }
 }
