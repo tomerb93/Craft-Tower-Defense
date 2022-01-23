@@ -6,8 +6,6 @@ public class ObjectPool : MonoBehaviour
 {
     public enum SpawnState {  SPAWNING, WAITING, COUNTING };
 
-    [SerializeField] GameObject enemyPrefab;
-    [SerializeField] [Range(0, 20)] int poolSize = 5;
     [SerializeField] float waveCountdown;
     [SerializeField] float timeBetweenWaves = 5f;
     [SerializeField] Wave[] waves;
@@ -92,6 +90,8 @@ public class ObjectPool : MonoBehaviour
     {
         searchCountdown -= Time.deltaTime;
 
+        // Search every 1 s, FindObjectOfType is heavy function
+        // (iterates all objects)
         if (searchCountdown <= 0f)
         {
             searchCountdown = 1f;
