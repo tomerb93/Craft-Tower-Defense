@@ -6,8 +6,8 @@ using UnityEngine.UIElements;
 public class BankMenuController : MonoBehaviour
 {
     // TODO: Change TextFields to label and update text (Easier to edit display this way)
-    TextField balance;
-    TextField obstaclesLeft;
+    Label balance;
+    Label obstaclesLeft;
 
     Bank bank;
 
@@ -16,8 +16,8 @@ public class BankMenuController : MonoBehaviour
         var root = GetComponent<UIDocument>().rootVisualElement;
         bank = FindObjectOfType<Bank>();
 
-        balance = root.Q<TextField>("balance");
-        obstaclesLeft = root.Q<TextField>("obstacles-left");
+        balance = root.Q<Label>("balance");
+        obstaclesLeft = root.Q<Label>("obs-left");
 
         if (bank != null)
         {
@@ -27,7 +27,7 @@ public class BankMenuController : MonoBehaviour
 
     public void UpdateDisplay()
     {
-        balance.value = bank.CurrentBalance.ToString();
-        obstaclesLeft.value = bank.CurrentObstacleCount.ToString();
+        balance.text = bank.CurrentBalance.ToString();
+        obstaclesLeft.text = bank.CurrentObstacleCount.ToString();
     }
 }
