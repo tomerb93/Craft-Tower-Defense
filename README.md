@@ -41,3 +41,10 @@ Implemented initial Tower Menu UI. The player can select any active towers on th
 ![Bank menu](https://j.gifs.com/mqGAJ9.gif)
 
 Obstacles and towers come at a cost and the player can now see remaining resources (current balance and obstacle count)
+
+![Alerts & waves](https://j.gifs.com/nR6O4P.gif)
+
+Enemies come in waves of various types and difficulty throughout the level
+
+Alert system will inform the player if he is trying to make an invalid action (i.e block path) & provide information
+in various events.
