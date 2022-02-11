@@ -82,7 +82,7 @@ public class TowerMenuController : MonoBehaviour
     {
         if (bank.WithdrawBalance(currentAttackCost))
         {
-            towerWeapon.AddDamage(0.25f);
+            towerWeapon.UpgradeDamage(0.25f);
             currentAttackCost += 2;
             SetButtonText();
         }
@@ -92,7 +92,7 @@ public class TowerMenuController : MonoBehaviour
     {
         if (bank.WithdrawBalance(currentSpeedCost))
         {
-            towerWeapon.AddSpeed(0.5f);
+            towerWeapon.UpgradeSpeed(0.5f);
             currentSpeedCost++;
             SetButtonText();
         }
@@ -102,7 +102,7 @@ public class TowerMenuController : MonoBehaviour
     {
         if (bank.WithdrawBalance(currentSlowCost))
         {
-            towerWeapon.AddSlow(0.05f);
+            towerWeapon.UpgradeSlow(0.05f);
             currentSlowCost += 5;
             SetButtonText();
         }

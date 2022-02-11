@@ -4,6 +4,12 @@ using UnityEngine;
 [ExecuteAlways]
 public class CoordinateLabeler : MonoBehaviour
 {
+    private enum LabelerState
+    {
+        COORDINATES,
+        X
+    }
+
     TextMeshPro label;
     Vector2Int coordinates = new Vector2Int();
     GridManager gridManager;
@@ -13,21 +19,19 @@ public class CoordinateLabeler : MonoBehaviour
     Color exploredColor = Color.yellow;
     Color pathColor = Color.red;
 
+    LabelerState state;
+
     void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
         label = GetComponent<TextMeshPro>();
-        ProcessLabels();
+        state = LabelerState.X;
     }
 
     void Update()
     {
-        if (!Application.isPlaying)
-        {
-            ProcessLabels();
-            UpdateTileName();
-        }
-
+        ProcessLabels();
+        UpdateTileName();
         SetLabelColor();
         ToggleLabelsDisplay();
     }
@@ -37,6 +41,10 @@ public class CoordinateLabeler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             label.enabled = !label.IsActive();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            state = state == LabelerState.COORDINATES ? LabelerState.X : LabelerState.COORDINATES;
         }
     }
 
@@ -71,7 +79,20 @@ public class CoordinateLabeler : MonoBehaviour
         coordinates.x = Mathf.RoundToInt(transform.parent.position.x / gridManager.UnityGridSize);
         coordinates.y = Mathf.RoundToInt(transform.parent.position.z / gridManager.UnityGridSize);
 
-        label.text = $"{coordinates.x},{coordinates.y}";
+        switch (state)
+        {
+            case LabelerState.COORDINATES:
+                label.text = $"{coordinates.x},{coordinates.y}";
+                break;
+
+            case LabelerState.X:
+                label.text = "X";
+                break;
+            default:
+                break;
+        }
+        
+
     }
     void UpdateTileName()
     {

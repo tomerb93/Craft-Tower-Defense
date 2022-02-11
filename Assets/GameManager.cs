@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ProcessLossRequest()
     {
-        alert.Alert("You lose! Reloading level...");
+        alert.Alert("You lose! Reloading level...", 24, true);
 
         yield return new WaitForSeconds(reloadOnLossTimer);
         

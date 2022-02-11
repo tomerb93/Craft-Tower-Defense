@@ -26,10 +26,12 @@ public class AlertController : MonoBehaviour
         root.style.display = display ? DisplayStyle.Flex : DisplayStyle.None;
     }
 
-    public void Alert(string text)
+    public void Alert(string text, int fontSize = 16, bool bold = false)
     {
         // TODO: Implement fade in/out effect
         alert.text = text;
+        alert.style.fontSize = fontSize;
+        alert.style.unityFontStyleAndWeight = bold ? FontStyle.Bold : FontStyle.Normal;
         StartCoroutine(ProcessAlertRequest());
 
     }

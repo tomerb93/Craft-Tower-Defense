@@ -83,6 +83,8 @@ public class EnemyMover : MonoBehaviour
             Vector3 endPosition = gridManager.GetPositionFromCoordinates(path[i].coordinates);
             float travelPercent = 0f;
 
+            transform.LookAt(endPosition);
+
             while (travelPercent < 1f)
             {
                 travelPercent += Time.deltaTime * currentSpeed;
@@ -96,8 +98,7 @@ public class EnemyMover : MonoBehaviour
 
     void FinishPath()
     {
-        // disable instead of destroying
-        gameObject.SetActive(false);
+        Destroy(gameObject);
         enemy.StealHitpoints();
         // TODO: Add life crystal mesh to at endCoordinates & add particle system effect
     }

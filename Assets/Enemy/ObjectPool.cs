@@ -14,8 +14,16 @@ public class ObjectPool : MonoBehaviour
     SpawnState state = SpawnState.COUNTING;
     float searchCountdown = 1f;
 
+    AlertController alert;
+
+    void Awake()
+    {
+        alert = FindObjectOfType<AlertController>();
+    }
+
     void Start()
     {
+        alert.Alert("Next wave spawning in 5 seconds", 20, true);
         waveCountdown = timeBetweenWaves;
     }
 
@@ -42,17 +50,22 @@ public class ObjectPool : MonoBehaviour
             }
         } else
         {
+
             waveCountdown -= Time.deltaTime;
         }
     }
 
     void WaveCompleted()
     {
-        Debug.Log("Wave Completed...");
-        // TODO: Alert player he's won and reward
+        alert.Alert("Wave completed", 20, true);
         if (nextWave + 1 > waves.Length - 1)
         {
-            Debug.Log("All waves complete, looping..");
+            alert.Alert("All waves complete, increasing difficulty...", 20, true);
+            foreach (Wave wave in waves)
+            {
+                wave.count *= 2;
+                wave.rate *= 1.2f;
+            }
             nextWave = 0;
         }
         else
@@ -60,13 +73,15 @@ public class ObjectPool : MonoBehaviour
             nextWave++;
         }
 
+        alert.Alert("Next wave spawning in 5 seconds", 20, true);
         state = SpawnState.COUNTING;
         waveCountdown = timeBetweenWaves;
     }
 
     IEnumerator SpawnWave(Wave wave)
     {
-        Debug.Log("Spawning wave..");
+        alert.Alert("Spawning wave!", 20, true);
+
         state = SpawnState.SPAWNING;
 
         for (int i = 0; i < wave.count; i++)
@@ -81,8 +96,6 @@ public class ObjectPool : MonoBehaviour
 
     void SpawnEnemy(Enemy enemy)
     {
-        Debug.Log("Spawning enemy..");
-
         Instantiate(enemy, transform);
     }
 

@@ -35,7 +35,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void ProcessDeath()
     {
-        gameObject.SetActive(false);
+        Destroy(gameObject);
         enemy.RewardBalance();
         StopAllCoroutines();
     }

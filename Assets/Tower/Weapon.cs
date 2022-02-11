@@ -36,18 +36,18 @@ public class Weapon : MonoBehaviour
         emission.rateOverTime = speed;
     }
 
-    public void AddDamage(float amount)
+    public void UpgradeDamage(float amount)
     {
         damage += amount;
     }
 
-    public void AddSpeed(float amount)
+    public void UpgradeSpeed(float amount)
     {
         speed += amount;
         SetParticleSystemProperties();
     }
 
-    public void AddSlow(float amount)
+    public void UpgradeSlow(float amount)
     {
         slow += amount;
 
