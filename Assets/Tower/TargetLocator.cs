@@ -21,6 +21,10 @@ public class TargetLocator : MonoBehaviour
         {
             AimAndFireWeapon();
         }
+        else
+        {
+            FireWeapon(false);
+        }
     }
 
     void AimAndFireWeapon()

@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] float startingHitpoints = 3;
+    [SerializeField] HealthBar healthBar;
 
     float currentHitPoints;
     Enemy enemy;
@@ -11,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
     void OnEnable()
     {
         currentHitPoints = startingHitpoints;
+        healthBar.SetMaxHealth(startingHitpoints);
     }
 
     void Start()
@@ -26,6 +28,7 @@ public class EnemyHealth : MonoBehaviour
     void ProcessHit(Weapon weapon)
     {
         currentHitPoints -= weapon.Damage;
+        healthBar.SetHealth(currentHitPoints);
 
         if (currentHitPoints <= 0)
         {

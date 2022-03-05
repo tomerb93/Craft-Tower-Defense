@@ -6,19 +6,19 @@ public class CoordinateLabeler : MonoBehaviour
 {
     private enum LabelerState
     {
-        COORDINATES,
-        X
+        Coordinates,
+        O
     }
 
     TextMeshPro label;
     Vector2Int coordinates = new Vector2Int();
     GridManager gridManager;
 
-    Color defaultColor = Color.white;
-    Color blockedColor = Color.clear;
-    Color exploredColor = Color.yellow;
-    Color pathColor = Color.red;
-    Color selectedColor = Color.green;
+    readonly Color defaultColor = Color.white;
+    readonly Color blockedColor = Color.clear;
+    readonly Color exploredColor = Color.yellow;
+    readonly Color pathColor = Color.red;
+    readonly Color selectedColor = Color.green;
 
     LabelerState state;
 
@@ -26,7 +26,7 @@ public class CoordinateLabeler : MonoBehaviour
     {
         gridManager = FindObjectOfType<GridManager>();
         label = GetComponent<TextMeshPro>();
-        state = LabelerState.X;
+        state = LabelerState.O;
     }
 
     void Update()
@@ -45,7 +45,7 @@ public class CoordinateLabeler : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            state = state == LabelerState.COORDINATES ? LabelerState.X : LabelerState.COORDINATES;
+            state = state == LabelerState.Coordinates ? LabelerState.O : LabelerState.Coordinates;
         }
     }
 
@@ -86,12 +86,12 @@ public class CoordinateLabeler : MonoBehaviour
 
         switch (state)
         {
-            case LabelerState.COORDINATES:
+            case LabelerState.Coordinates:
                 label.text = $"{coordinates.x},{coordinates.y}";
                 break;
 
-            case LabelerState.X:
-                label.text = "X";
+            case LabelerState.O:
+                label.text = "O";
                 break;
             default:
                 break;

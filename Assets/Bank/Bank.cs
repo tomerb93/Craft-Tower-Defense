@@ -11,6 +11,7 @@ public class Bank : MonoBehaviour
     [SerializeField] int startingBalance = 150;
     [SerializeField] int startingObstacleCount = 10;
     [SerializeField] int startingHitpoints = 10;
+    [SerializeField] HealthBar playerHealthBar;
 
     BankMenuController bankMenu;
     GameManager game;
@@ -27,6 +28,7 @@ public class Bank : MonoBehaviour
         currentBalance = startingBalance;
         currentObstacleCount = startingObstacleCount;
         currentHitpoints = startingHitpoints;
+        playerHealthBar.SetMaxHealth(startingHitpoints);
     }
 
     public void DepositBalance(int amount)
@@ -62,6 +64,7 @@ public class Bank : MonoBehaviour
     public void DecreaseHitpoints(int amount)
     {
         currentHitpoints -= Mathf.Abs(amount);
+        playerHealthBar.SetHealth(currentHitpoints);
 
         if (currentHitpoints <= 0)
         {
