@@ -15,9 +15,10 @@ public class CoordinateLabeler : MonoBehaviour
     GridManager gridManager;
 
     Color defaultColor = Color.white;
-    Color blockedColor = Color.gray;
+    Color blockedColor = Color.clear;
     Color exploredColor = Color.yellow;
     Color pathColor = Color.red;
+    Color selectedColor = Color.green;
 
     LabelerState state;
 
@@ -56,7 +57,11 @@ public class CoordinateLabeler : MonoBehaviour
 
         if (node == null) return;
 
-        if (!node.isWalkable)
+        if (node.isSelected)
+        {
+            label.color = selectedColor;
+        }
+        else if (!node.isWalkable)
         {
             label.color = blockedColor;
         }

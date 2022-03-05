@@ -73,4 +73,18 @@ public class GridManager : MonoBehaviour
             }
         }
     }
+
+    public void SelectTile(Vector2Int coordinates)
+    {
+        // deselect all previous tiles
+        foreach (var entry in grid)
+        {
+            entry.Value.isSelected = false;
+        }
+
+        if (grid.ContainsKey(coordinates))
+        {
+            grid[coordinates].isSelected = true;
+        }
+    }
 }

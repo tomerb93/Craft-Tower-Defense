@@ -64,12 +64,14 @@ public class Tile : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 towerMenu.ToggleVisibility(false);
+                gridManager.SelectTile(new Vector2Int(-1, -1)); // To deselect towers w/o selecting
             }
         }
     }
 
     void BindAndDisplaySelectedTowerMenu()
     {
+        gridManager.SelectTile(coordinates);
         towerMenu.ToggleVisibility(true);
         towerMenu.BindSelectedTower(placedTower);
     }
