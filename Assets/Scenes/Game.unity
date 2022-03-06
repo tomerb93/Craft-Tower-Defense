@@ -4939,20 +4939,24 @@ MonoBehaviour:
   waves:
   - name: First wave
     enemy: {fileID: -3773044356339577192, guid: 16926b7322b6e39449c59956ac915aa2, type: 3}
-    count: 2
-    rate: 1
+    count: 10
+    rate: 2
   - name: Second wave
     enemy: {fileID: -3773044356339577192, guid: 16926b7322b6e39449c59956ac915aa2, type: 3}
-    count: 5
-    rate: 1.5
+    count: 15
+    rate: 3
   - name: Third wave
     enemy: {fileID: -3773044356339577192, guid: 61789f80411a9c74597dac158294d939, type: 3}
     count: 10
-    rate: 1.8
-  - name: Final wave
+    rate: 2
+  - name: Fourth wave
     enemy: {fileID: -3773044356339577192, guid: 16926b7322b6e39449c59956ac915aa2, type: 3}
-    count: 20
-    rate: 3
+    count: 30
+    rate: 6
+  - name: Final wave
+    enemy: {fileID: 8297359917386953160, guid: bed644d10167b1148b5b0e77d89b4681, type: 3}
+    count: 3
+    rate: 0.45
 --- !u!1001 &579711230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5931,13 +5935,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.06720463, y: 0.89477545, z: -0.41724062, w: 0.14412081}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 161.7, z: 0}
 --- !u!4 &722115734 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4680614670895613134, guid: 64c8bcf9dabbfa04e9248495b23edb68, type: 3}
@@ -8099,6 +8103,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fea6738a1fce144daadab8c21c32233, type: 3}
+--- !u!114 &954678010 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7278518276148781327, guid: 214a6f2f196074a4fb555e6e60f28759, type: 3}
+  m_PrefabInstance: {fileID: 1725130174}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8624083d42d453142b5d47190d186db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &959686887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11283,9 +11298,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20af644267ff2ff47992a99cc3dbcda0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingBalance: 150
+  startingBalance: 1000
   startingObstacleCount: 10
-  startingHitpoints: 2
+  startingHitpoints: 5
+  playerHealthBar: {fileID: 954678010}
 --- !u!4 &1342452017
 Transform:
   m_ObjectHideFlags: 0

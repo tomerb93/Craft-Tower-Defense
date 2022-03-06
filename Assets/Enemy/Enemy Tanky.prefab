@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723f8770062326e4e9d8d6340ca4f7d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHitpoints: 10
+  startingHitpoints: 15
   healthBar: {fileID: 4710212403585096994}
 --- !u!65 &1677290663481601059
 BoxCollider:
