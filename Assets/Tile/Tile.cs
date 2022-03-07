@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    public enum TileState
+    {
+        Vacant,
+        Blocked,
+        TowerPlaced,
+        ObstaclePlaced
+    }
     public bool IsPlaceable { get { return isPlaceable; } }
 
     [SerializeField] bool isPlaceable;
@@ -14,7 +21,7 @@ public class Tile : MonoBehaviour
     Vector2Int coordinates;
     TowerMenuController towerMenu;
     Tower placedTower;
-    TileState state = TileState.VACANT;
+    TileState state = TileState.Vacant;
 
     void Awake()
     {
@@ -32,14 +39,14 @@ public class Tile : MonoBehaviour
             if (!isPlaceable)
             {
                 gridManager.BlockNode(coordinates);
-                state = TileState.BLOCKED;
+                state = TileState.Blocked;
             }
         }
     }
 
     void OnMouseOver()
     {
-        if (state == TileState.VACANT && !towerMenu.IsOpened)
+        if (state == TileState.Vacant && !towerMenu.IsOpened)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -51,7 +58,7 @@ public class Tile : MonoBehaviour
                 InstantiateObstacle(obstaclePrefab);
             }
         }
-        else if (state == TileState.TOWER_PLACED)
+        else if (state == TileState.TowerPlaced)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -85,7 +92,7 @@ public class Tile : MonoBehaviour
             {
                 gridManager.BlockNode(coordinates);
                 pathfinder.BroadcastRecalculatePath();
-                state = TileState.TOWER_PLACED;
+                state = TileState.TowerPlaced;
             }
         }
     }
@@ -99,16 +106,8 @@ public class Tile : MonoBehaviour
             {
                 gridManager.BlockNode(coordinates);
                 pathfinder.BroadcastRecalculatePath();
-                state = TileState.OBSTACLE_PLACED;
+                state = TileState.ObstaclePlaced;
             }
         }
-    }
-
-    enum TileState
-    {
-        VACANT,
-        BLOCKED,
-        TOWER_PLACED,
-        OBSTACLE_PLACED
     }
 }

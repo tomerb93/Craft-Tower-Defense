@@ -11,7 +11,7 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] Wave[] waves;
 
     int nextWave;
-    SpawnState state = SpawnState.COUNTING;
+    SpawnState state;
     float searchCountdown = 1f;
 
     AlertController alert;
@@ -23,8 +23,7 @@ public class ObjectPool : MonoBehaviour
 
     void Start()
     {
-        alert.Alert("Next wave spawning in 5 seconds", 20, true);
-        waveCountdown = timeBetweenWaves;
+        AnnounceNextWaveAndStartCountdown();
     }
 
     void Update()
@@ -57,10 +56,10 @@ public class ObjectPool : MonoBehaviour
 
     void WaveCompleted()
     {
-        alert.Alert("Wave completed", 20, true);
+        alert.Alert("Wave completed", 24, true);
         if (nextWave + 1 > waves.Length - 1)
         {
-            alert.Alert("All waves complete, increasing difficulty...", 20, true);
+            alert.Alert("All waves complete, increasing difficulty...", 24, true);
             foreach (Wave wave in waves)
             {
                 wave.count *= 2;
@@ -73,14 +72,12 @@ public class ObjectPool : MonoBehaviour
             nextWave++;
         }
 
-        alert.Alert("Next wave spawning in 5 seconds", 20, true);
-        state = SpawnState.COUNTING;
-        waveCountdown = timeBetweenWaves;
+        AnnounceNextWaveAndStartCountdown();
     }
 
     IEnumerator SpawnWave(Wave wave)
     {
-        alert.Alert("Spawning wave!", 20, true);
+        alert.Alert("Spawning wave!", 24, true);
 
         state = SpawnState.SPAWNING;
 
@@ -97,6 +94,13 @@ public class ObjectPool : MonoBehaviour
     void SpawnEnemy(Enemy enemy)
     {
         Instantiate(enemy, transform);
+    }
+
+    void AnnounceNextWaveAndStartCountdown()
+    {
+        state = SpawnState.COUNTING;
+        alert.Alert($"{waves[nextWave].name}: Spawning in 5 seconds", 24, true);
+        waveCountdown = timeBetweenWaves;
     }
 
     bool EnemyIsAlive()

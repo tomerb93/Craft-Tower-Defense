@@ -48,3 +48,5 @@ Enemies come in waves of various types and difficulty throughout the level
 
 Alert system will inform the player if he is trying to make an invalid action (i.e block path) & provide information
 in various events.
+
+[Design updates](https://youtu.be/Qh6J83ogJNA)
