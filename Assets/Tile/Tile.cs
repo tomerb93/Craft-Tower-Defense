@@ -10,11 +10,8 @@ public class Tile : MonoBehaviour
         TowerPlaced,
         ObstaclePlaced
     }
-    public bool IsPlaceable { get { return isPlaceable; } }
 
     [SerializeField] bool isPlaceable;
-    [SerializeField] Obstacle obstaclePrefab;
-    [SerializeField] Tower towerPrefab;
 
     GridManager gridManager;
     Pathfinder pathfinder;
@@ -22,11 +19,13 @@ public class Tile : MonoBehaviour
     TowerMenuController towerMenu;
     Tower placedTower;
     TileState state = TileState.Vacant;
+    PrefabManager prefabManager;
 
     void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
         pathfinder = FindObjectOfType<Pathfinder>();
+        prefabManager = FindObjectOfType<PrefabManager>();
         towerMenu = FindObjectOfType<TowerMenuController>();
     }
 
@@ -50,12 +49,12 @@ public class Tile : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                InstantiateTower(towerPrefab);
+                InstantiateTower();
             }
 
             if (Input.GetMouseButtonDown(1))
             {
-                InstantiateObstacle(obstaclePrefab);
+                InstantiateObstacle();
             }
         }
         else if (state == TileState.TowerPlaced)
@@ -78,16 +77,16 @@ public class Tile : MonoBehaviour
 
     void BindAndDisplaySelectedTowerMenu()
     {
-        gridManager.SelectTile(coordinates);
         towerMenu.ToggleVisibility(true);
         towerMenu.BindSelectedTower(placedTower);
+        gridManager.SelectTile(coordinates);
     }
 
-    void InstantiateTower(Tower towerPrefab)
+    void InstantiateTower()
     {
         if (!pathfinder.WillBlockPath(coordinates))
         {
-            placedTower = towerPrefab.CreateTower(towerPrefab, transform.position);
+            placedTower = prefabManager.GetPrefab(PrefabManager.PrefabIndices.Tower).GetComponent<Tower>().CreateTower(transform.position);
             if (placedTower != null)
             {
                 gridManager.BlockNode(coordinates);
@@ -97,11 +96,11 @@ public class Tile : MonoBehaviour
         }
     }
 
-    void InstantiateObstacle(Obstacle obstaclePrefab)
+    void InstantiateObstacle()
     {
         if (!pathfinder.WillBlockPath(coordinates))
         {
-            bool success = obstaclePrefab.CreateObstacle(obstaclePrefab, transform.position);
+            bool success = prefabManager.GetPrefab(PrefabManager.PrefabIndices.Obstacle).GetComponent<Obstacle>().CreateObstacle(transform.position);
             if (success)
             {
                 gridManager.BlockNode(coordinates);

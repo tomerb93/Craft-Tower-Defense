@@ -3,15 +3,13 @@ using UnityEngine;
 
 public class TargetLocator : MonoBehaviour
 {
-    [SerializeField] Transform weaponPrefab;
-    [SerializeField] ParticleSystem bulletParticleSystem;
-
+    ParticleSystem bulletParticleSystem;
     Transform target;
     Weapon weapon;
 
-    void Awake()
+    void Start()
     {
-        weapon = weaponPrefab.GetComponent<Weapon>();
+        SetWeapon();
     }
 
     void Update()
@@ -27,14 +25,19 @@ public class TargetLocator : MonoBehaviour
         }
     }
 
+    public void SetWeapon()
+    {
+        weapon = GetComponentInChildren<Weapon>();
+        bulletParticleSystem = weapon.GetComponentInChildren<ParticleSystem>();
+    }
+
     void AimAndFireWeapon()
     {
         float targetDistance = Vector3.Distance(transform.position, target.position);
-
-
+        
         if (targetDistance < weapon.Range)
         {
-            weaponPrefab.LookAt(target);
+            weapon.transform.LookAt(target);
             FireWeapon(true);
         }
         else

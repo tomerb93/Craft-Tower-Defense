@@ -4,7 +4,7 @@ using UnityEngine;
 [ExecuteAlways]
 public class CoordinateLabeler : MonoBehaviour
 {
-    private enum LabelerState
+    public enum LabelerState
     {
         Coordinates,
         O
@@ -53,7 +53,7 @@ public class CoordinateLabeler : MonoBehaviour
     {
         if (gridManager == null) return;
 
-        Node node = gridManager.GetNode(coordinates);
+        var node = gridManager.GetNode(coordinates);
 
         if (node == null) return;
 

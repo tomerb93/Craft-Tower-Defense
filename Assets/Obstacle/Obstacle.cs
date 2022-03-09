@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    
-    public bool CreateObstacle(Obstacle obstacle, Vector3 position)
+    public bool CreateObstacle(Vector3 position)
     {
-        Bank bank = FindObjectOfType<Bank>();
+        var bank = FindObjectOfType<Bank>();
+        var prefabManager = FindObjectOfType<PrefabManager>();
 
-        if (bank == null)
+        if (bank == null || prefabManager == null)
         {
             return false;
         }
 
         if (bank.DecreaseObstacleCount(1))
         {
-            Instantiate(obstacle, position, Quaternion.identity);
+            Instantiate(prefabManager.GetPrefab(PrefabManager.PrefabIndices.Obstacle), position, Quaternion.identity);
             return true;
         }
 
