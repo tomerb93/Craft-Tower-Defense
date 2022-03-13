@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] float damage = 0.5f;
     [SerializeField] float speed = 4f;
     [SerializeField] float range = 15f;
-    [SerializeField] string weaponName = "Weapon 1";
+    [SerializeField] string weaponName = "Weapon";
     [SerializeField] float slow = 0.1f;
     [SerializeField] float slowDuration = 1f;
 
@@ -24,10 +24,10 @@ public class Weapon : MonoBehaviour
     {
         bulletParticleSystem = GetComponentInChildren<ParticleSystem>();
     }
-
+     
     void Start()
     {
-        SetParticleSystemProperties();
+        //SetParticleSystemProperties();
     }
 
     void SetParticleSystemProperties()
@@ -51,9 +51,9 @@ public class Weapon : MonoBehaviour
     {
         slow += amount;
 
-        if (slow > 1)
+        if (slow > 0.8f)
         {
-            slow = 0.99f;
+            slow = 0.8f;
         }
     }
 }
