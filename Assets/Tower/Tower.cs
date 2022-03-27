@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Tower : MonoBehaviour
 {
@@ -26,14 +28,19 @@ public class Tower : MonoBehaviour
         {
             return null;
         }
-
-        var offset = new Vector3(0, 5f, 0);
+        
         // Instantiate tower base
         var tower = Instantiate(prefabManager.GetPrefab(PrefabManager.PrefabIndices.Tower), position, Quaternion.identity).GetComponent<Tower>();
-        Instantiate(prefabManager.GetPrefab(PrefabManager.PrefabIndices.TowerWeapon),
-            position + prefabManager.GetPrefabPosition(PrefabManager.PrefabIndices.TowerWeapon),
+
+
+        var weaponToInstantiate = PrefabManager.PrefabIndices.TowerWeapon2;
+
+        // Instantiate starting tower weapon
+        Instantiate(prefabManager.GetPrefab(weaponToInstantiate),
+            position + prefabManager.GetPrefabPosition(weaponToInstantiate),
             Quaternion.identity, tower.transform);
 
         return tower;
     }
 }
+    

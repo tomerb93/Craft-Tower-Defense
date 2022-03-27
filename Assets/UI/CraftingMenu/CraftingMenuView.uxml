@@ -1,0 +1,23 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="/Assets/main.uss" />
+    <ui:VisualElement style="flex-grow: 1; justify-content: space-around; align-items: center;">
+        <ui:VisualElement name="main-view" style="flex-basis: 500px; flex-shrink: initial; width: 500px; height: 500px; flex-grow: initial; flex-direction: column; background-color: rgba(219, 96, 96, 255); align-items: center;">
+            <ui:Label text="Crafting Menu" display-tooltip-when-elided="true" style="align-items: flex-end;" />
+            <ui:VisualElement name="third-row" class="craft-menu-row">
+                <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
+                <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
+                <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
+            </ui:VisualElement>
+            <ui:VisualElement name="second-row" class="craft-menu-row">
+                <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
+                <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
+                <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
+            </ui:VisualElement>
+            <ui:VisualElement name="first-row" class="craft-menu-row">
+                <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" style="background-image: url(&apos;/Assets/AssetPacks/VoxelArt/Models/Tower/tower1.png&apos;);" />
+                <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
+                <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

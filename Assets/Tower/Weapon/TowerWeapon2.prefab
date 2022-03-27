@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2419880735910293571, guid: 5bc6f2ee494236f4b927a08b974d70d7, type: 3}
       propertyPath: slow
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2419880735910293571, guid: 5bc6f2ee494236f4b927a08b974d70d7, type: 3}
       propertyPath: range

@@ -43,8 +43,9 @@ public class Weapon : MonoBehaviour
 
     public void UpgradeSpeed(float amount)
     {
-        speed += amount;
-        SetParticleSystemProperties();
+        //speed += amount;
+        //SetParticleSystemProperties();
+
     }
 
     public void UpgradeSlow(float amount)

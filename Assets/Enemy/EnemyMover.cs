@@ -46,12 +46,13 @@ public class EnemyMover : MonoBehaviour
     {
         if (weapon.HasSlow && !isSlowed)
         {
-            currentSpeed -= weapon.Slow;
+            float oldSpeed = currentSpeed;
+            currentSpeed *= (1f - weapon.Slow);
             isSlowed = true;
 
             yield return new WaitForSeconds(weapon.SlowDuration);
 
-            currentSpeed += weapon.Slow;
+            currentSpeed = oldSpeed;
             isSlowed = false;
         }
     }
@@ -100,7 +101,6 @@ public class EnemyMover : MonoBehaviour
     {
         Destroy(gameObject);
         enemy.StealHitpoints();
-        // TODO: Add life crystal mesh to at endCoordinates & add particle system effect
     }
 
     void ReturnToStart()

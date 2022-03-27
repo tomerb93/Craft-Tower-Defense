@@ -8,7 +8,8 @@ public class PrefabManager : MonoBehaviour
     {
         Tower,
         Obstacle,
-        TowerWeapon
+        TowerWeapon1,
+        TowerWeapon2,
     }
 
     [SerializeField] Prefab[] prefabs;

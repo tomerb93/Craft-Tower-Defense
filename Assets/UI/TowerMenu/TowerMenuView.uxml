@@ -2,7 +2,7 @@
     <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: flex-end; justify-content: flex-end;">
         <ui:VisualElement style="flex-basis: auto; height: 73px; flex-direction: row; width: 304px; align-items: flex-end; justify-content: center; flex-wrap: wrap; font-size: 12px; margin-bottom: 10px;">
             <ui:Button text="Attack" display-tooltip-when-elided="true" name="add-attack-button" style="height: 45px; width: 60px; font-size: 10px; color: rgb(0, 0, 0); background-image: none;" />
-            <ui:Button text="Speed" display-tooltip-when-elided="true" name="add-speed-button" style="height: 45px; width: 60px; align-items: stretch; font-size: 10px; color: rgb(5, 0, 0);" />
+            <ui:Button display-tooltip-when-elided="true" name="add-speed-button" style="height: 45px; width: 60px; align-items: stretch; font-size: 10px; color: rgb(5, 0, 0); background-image: url(&apos;/Assets/AssetPacks/VoxelArt/Models/Tower/tower1.png&apos;);" />
             <ui:Button text="Slow" display-tooltip-when-elided="true" name="add-slow-button" style="height: 45px; width: 60px; align-items: stretch; font-size: 10px; color: rgb(0, 0, 0);" />
             <ui:Button text="Close" display-tooltip-when-elided="true" name="close-button" style="height: 45px; width: 60px; align-items: stretch; font-size: 10px; color: rgb(0, 0, 0);" />
         </ui:VisualElement>
