@@ -1,10 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: flex-end; justify-content: flex-end;">
-        <ui:VisualElement style="flex-basis: auto; height: 73px; flex-direction: row; width: 304px; align-items: flex-end; justify-content: center; flex-wrap: wrap; font-size: 12px; margin-bottom: 10px;">
-            <ui:Button text="Attack" display-tooltip-when-elided="true" name="add-attack-button" style="height: 45px; width: 60px; font-size: 10px; color: rgb(0, 0, 0); background-image: none;" />
-            <ui:Button display-tooltip-when-elided="true" name="add-speed-button" style="height: 45px; width: 60px; align-items: stretch; font-size: 10px; color: rgb(5, 0, 0); background-image: url(&apos;/Assets/AssetPacks/VoxelArt/Models/Tower/tower1.png&apos;);" />
-            <ui:Button text="Slow" display-tooltip-when-elided="true" name="add-slow-button" style="height: 45px; width: 60px; align-items: stretch; font-size: 10px; color: rgb(0, 0, 0);" />
-            <ui:Button text="Close" display-tooltip-when-elided="true" name="close-button" style="height: 45px; width: 60px; align-items: stretch; font-size: 10px; color: rgb(0, 0, 0);" />
+    <Style src="/Assets/main.uss" />
+    <ui:VisualElement style="flex-grow: 1; align-items: flex-end; justify-content: flex-end;">
+        <ui:VisualElement style="flex-basis: auto; height: 200px; flex-direction: row; width: 500px; align-items: flex-end; justify-content: center; flex-wrap: wrap; font-size: 12px; margin-bottom: 10px; flex-grow: 0; flex-shrink: 1;">
+            <ui:Button display-tooltip-when-elided="true" name="tower-1-btn" class="craft-menu-button" style="height: 45px; width: 60px; font-size: 10px; color: rgb(0, 0, 0); background-image: url(&apos;/Assets/AssetPacks/VoxelArt/Models/Tower/tower1.png&apos;);" />
+            <ui:Button display-tooltip-when-elided="true" name="tower-2-btn" class="craft-menu-button" style="height: 45px; width: 60px; align-items: stretch; font-size: 10px; color: rgb(5, 0, 0); background-image: url(&apos;/Assets/AssetPacks/VoxelArt/Models/Tower/tower2.png&apos;);" />
+            <ui:Button text="Sell" display-tooltip-when-elided="true" name="sell-btn" class="craft-menu-button" style="height: 45px; width: 60px; align-items: stretch; font-size: 10px; color: rgb(0, 0, 0);" />
+            <ui:Button text="Close" display-tooltip-when-elided="true" name="close-btn" class="craft-menu-button" style="height: 45px; width: 60px; align-items: stretch; font-size: 10px; color: rgb(0, 0, 0);" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

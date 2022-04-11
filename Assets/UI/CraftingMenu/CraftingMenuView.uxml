@@ -3,20 +3,20 @@
     <ui:VisualElement style="flex-grow: 1; justify-content: space-around; align-items: center;">
         <ui:VisualElement name="main-view" style="flex-basis: 500px; flex-shrink: initial; width: 500px; height: 500px; flex-grow: initial; flex-direction: column; background-color: rgba(219, 96, 96, 255); align-items: center;">
             <ui:Label text="Crafting Menu" display-tooltip-when-elided="true" style="align-items: flex-end;" />
-            <ui:VisualElement name="third-row" class="craft-menu-row">
-                <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
+            <ui:VisualElement name="third-row" class="craft-menu-row" style="justify-content: flex-start; align-items: stretch;">
+                <ui:Label text="Level 3" display-tooltip-when-elided="true" style="align-items: flex-end;" />
                 <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
                 <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
             </ui:VisualElement>
             <ui:VisualElement name="second-row" class="craft-menu-row">
-                <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
+                <ui:Label text="Level 2" display-tooltip-when-elided="true" style="align-items: flex-end;" />
                 <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
                 <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
             </ui:VisualElement>
             <ui:VisualElement name="first-row" class="craft-menu-row">
-                <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" style="background-image: url(&apos;/Assets/AssetPacks/VoxelArt/Models/Tower/tower1.png&apos;);" />
-                <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
-                <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
+                <ui:Label text="Level 1" display-tooltip-when-elided="true" style="align-items: flex-end;" />
+                <ui:Button text="Basic" display-tooltip-when-elided="true" class="craft-menu-button" style="background-image: url(&apos;/Assets/AssetPacks/VoxelArt/Models/Tower/tower1.png&apos;);" />
+                <ui:Button text="Fire" display-tooltip-when-elided="true" class="craft-menu-button" style="background-image: url(&apos;/Assets/AssetPacks/VoxelArt/Models/Tower/tower2.png&apos;);" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
