@@ -4988,7 +4988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveCountdown: 0
-  timeBetweenWaves: 5
+  timeBetweenWaves: 999
   waves:
   - name: First wave
     enemy: {fileID: -3773044356339577192, guid: 16926b7322b6e39449c59956ac915aa2, type: 3}

@@ -15,6 +15,7 @@ public class TowerMenuController : MonoBehaviour
     Button closeButton;
 
     VisualElement root;
+    Tower tower;
     Weapon towerWeapon;
     Bank bank;
 
@@ -65,6 +66,7 @@ public class TowerMenuController : MonoBehaviour
 
     public void BindSelectedTower(Tower tower)
     {
+        this.tower = tower.GetComponent<Tower>();
         towerWeapon = tower.GetComponentInChildren<Weapon>();
     }
 
@@ -86,8 +88,9 @@ public class TowerMenuController : MonoBehaviour
     {
         if (bank.WithdrawBalance(currentSpeedCost))
         {
-            towerWeapon.UpgradeSpeed(0.5f);
-            currentSpeedCost++;
+            tower.SetWeapon(PrefabManager.PrefabIndices.TowerWeapon2, tower, tower.transform.position);
+            //towerWeapon.UpgradeSpeed(0.5f);
+            //currentSpeedCost++;
         }
     }
 

@@ -1,17 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
+using Vector3 = UnityEngine.Vector3;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] int cost = 50;
+    [SerializeField] private int cost = 50;
 
     public Tower CreateTower(Vector3 position)
     {
         var bank = FindObjectOfType<Bank>();
-        
+
         if (bank == null)
         {
             return null;
@@ -22,25 +25,32 @@ public class Tower : MonoBehaviour
 
     private Tower InstantiateTower(Vector3 position)
     {
-        var prefabManager = FindObjectOfType<PrefabManager>();
-
-        if (prefabManager == null)
-        {
-            return null;
-        }
-        
+        var prefabs = FindObjectOfType<PrefabManager>();
         // Instantiate tower base
-        var tower = Instantiate(prefabManager.GetPrefab(PrefabManager.PrefabIndices.Tower), position, Quaternion.identity).GetComponent<Tower>();
-
-
-        var weaponToInstantiate = PrefabManager.PrefabIndices.TowerWeapon2;
+        var tower = Instantiate(prefabs.GetPrefab(PrefabManager.PrefabIndices.Tower), 
+            position, 
+            Quaternion.identity)
+            .GetComponent<Tower>();
 
         // Instantiate starting tower weapon
-        Instantiate(prefabManager.GetPrefab(weaponToInstantiate),
-            position + prefabManager.GetPrefabPosition(weaponToInstantiate),
-            Quaternion.identity, tower.transform);
+        SetWeapon(PrefabManager.PrefabIndices.TowerWeapon1, tower, position);
 
         return tower;
+    }
+
+    public void SetWeapon(PrefabManager.PrefabIndices weaponIndex, Tower tower, Vector3 position)
+    {
+        var prefabs = FindObjectOfType<PrefabManager>();
+
+        var weapon = GetComponentInChildren<Weapon>();
+        if (weapon != null)
+        {
+            Destroy(weapon.gameObject);
+        }
+
+        Instantiate(prefabs.GetPrefab(weaponIndex),
+            position + prefabs.GetPrefabPosition(weaponIndex),
+            Quaternion.identity, tower.transform).GetComponent<Weapon>();
     }
 }
     

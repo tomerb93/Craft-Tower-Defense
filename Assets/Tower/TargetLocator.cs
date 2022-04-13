@@ -7,13 +7,12 @@ public class TargetLocator : MonoBehaviour
     Transform target;
     Weapon weapon;
 
-    void Start()
-    {
-        SetWeapon();
-    }
-
     void Update()
     {
+        if (weapon == null)
+        {
+            SetWeapon();
+        }
         FindClosestTarget();
         if (target != null)
         {
