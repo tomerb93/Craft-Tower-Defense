@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  offset: 1
 --- !u!114 &-8004596770007441579
 MonoBehaviour:
   m_ObjectHideFlags: 0

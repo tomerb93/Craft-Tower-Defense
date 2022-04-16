@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: speed
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 564717377597205222, guid: 16926b7322b6e39449c59956ac915aa2, type: 3}
+      propertyPath: offset
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1677290663481601059, guid: 16926b7322b6e39449c59956ac915aa2, type: 3}
       propertyPath: m_Size.x
       value: 14
