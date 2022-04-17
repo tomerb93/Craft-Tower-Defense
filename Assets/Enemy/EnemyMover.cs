@@ -16,14 +16,6 @@ public class EnemyMover : MonoBehaviour
     Enemy enemy;
     bool isSlowed;
 
-    void OnEnable()
-    {
-        isSlowed = false;
-        currentSpeed = speed;
-        ReturnToStart();
-        CalculatePath(true);
-    }
-
     void OnParticleCollision(GameObject other)
     {
         if (gameObject.activeInHierarchy)
@@ -41,6 +33,11 @@ public class EnemyMover : MonoBehaviour
     void Start()
     {
         enemy = GetComponent<Enemy>();
+
+        isSlowed = false;
+        currentSpeed = speed;
+        ReturnToStart();
+        CalculatePath(true);
     }
 
     IEnumerator ProcessHit(Weapon weapon)

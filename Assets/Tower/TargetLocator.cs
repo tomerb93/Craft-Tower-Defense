@@ -55,15 +55,15 @@ public class TargetLocator : MonoBehaviour
     void FindClosestTarget()
     {
         // get all game objects with EnemyMover script
-        EnemyMover[] enemies = FindObjectsOfType<EnemyMover>();
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
         Transform closestTarget = null;
         float maxDistance = Mathf.Infinity;
 
-        foreach (EnemyMover enemy in enemies)
+        foreach (Enemy enemy in enemies)
         {
             float targetDistance = Vector3.Distance(transform.position, enemy.transform.position);
 
-            if (targetDistance < maxDistance)
+            if (targetDistance < maxDistance && !enemy.IsDead)
             {
                 closestTarget = enemy.transform;
                 maxDistance = targetDistance;

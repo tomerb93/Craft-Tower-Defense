@@ -19,6 +19,10 @@ public class HealthBar : MonoBehaviour
     public void SetHealth(float health)
     {
         slider.value = health;
-        fill.color = gradient.Evaluate(slider.normalizedValue);
+    }
+
+    public void SetColor(Color color)
+    {
+        fill.color = color;
     }
 }

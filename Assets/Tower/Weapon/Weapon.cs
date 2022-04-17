@@ -11,10 +11,12 @@ public class Weapon : MonoBehaviour
     public bool HasSlow { get { return slow > 0; } }
     public float DamageOverTime { get { return damageOverTime; } }
     public bool HasDOT { get { return damageOverTime > 0; } }
+    public float DamageOverTimer { get { return damageOverTimer; } }
 
 
     [SerializeField] float damage = 0.5f;
     [SerializeField] float damageOverTime = 0f;
+    [SerializeField] float damageOverTimer = 0.5f;
     [SerializeField] float speed = 4f;
     [SerializeField] float range = 15f;
     [SerializeField] string weaponName = "Weapon";

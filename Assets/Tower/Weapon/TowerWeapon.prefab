@@ -4953,7 +4953,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  speed: 2
+  damageOverTime: 0
+  speed: 1
   range: 30
   weaponName: Weapon 1
   slow: 0
