@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  offset: 2
 --- !u!114 &-8004596770007441579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHitpoints: 3
   healthBar: {fileID: 5310100155028647839}
+  deathVFX: {fileID: 198917022394846920, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
 --- !u!65 &1677290663481601059
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -90,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balanceReward: 5
   hitpointPenalty: 1
+  spawnParticleSystem: {fileID: 0}
 --- !u!1 &3917203319528800236
 GameObject:
   m_ObjectHideFlags: 0

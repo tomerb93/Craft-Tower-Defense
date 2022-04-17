@@ -5,6 +5,7 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] float startingHitpoints = 3;
     [SerializeField] HealthBar healthBar;
+    [SerializeField] ParticleSystem deathVFX; 
 
     float currentHitPoints;
     Enemy enemy;
@@ -38,6 +39,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void ProcessDeath()
     {
+        if (!deathVFX.isPlaying) deathVFX.Play();
         Destroy(gameObject);
         enemy.RewardBalance();
         StopAllCoroutines();
