@@ -4,13 +4,14 @@ using UnityEngine;
 [RequireComponent(typeof(Enemy))]
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] float startingHitpoints = 3;
+    [SerializeField] float startingHitpoints = 3f;
+    [SerializeField] float armor;
     [SerializeField] HealthBar healthBar;
 
     [SerializeField] ParticleSystem deathVFX;
 
     float currentHitPoints;
-    bool isDotted = false;
+    bool isDotted;
 
     void Start()
     {
@@ -31,13 +32,14 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            TakeDamage(weapon.Damage);
+            TakeDamage(weapon.Damage, weapon.Pierce);
         }
     }
 
-    void TakeDamage(float weaponDamage)
+    void TakeDamage(float weaponDamage, float weaponPierce, bool isDot = false)
     {
-        currentHitPoints -= weaponDamage;
+        float damageTaken = isDot ? weaponDamage : weaponDamage - armor * (1f - weaponPierce);
+        currentHitPoints -= damageTaken > 0f ? damageTaken : 0f;
         healthBar.SetHealth(currentHitPoints);
         healthBar.SetColor(isDotted ? Color.green : Color.red);
         if (currentHitPoints <= 0)
@@ -50,17 +52,18 @@ public class EnemyHealth : MonoBehaviour
     {
         isDotted = true;
 
-        for (int i = 0; i < 500; i++)
+        for (int i = 0; i < weapon.DamageOverTimeDuration; i++)
         {
-            TakeDamage(weapon.DamageOverTime);
+            TakeDamage(weapon.DamageOverTime, weapon.Pierce, true);
 
             yield return new WaitForSeconds(weapon.DamageOverTimer);
         }
         
         isDotted = false;
+        healthBar.SetColor(Color.red);
     }
 
-    private void ProcessDeath()
+    void ProcessDeath()
     {
         var enemy = GetComponent<Enemy>();
 

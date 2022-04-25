@@ -1283,6 +1283,8 @@ MonoBehaviour:
     position: {x: -0.00999993, y: 4.37, z: -0.5499998}
   - prefab: {fileID: 4939804600427074401, guid: 18ed18903dfc01e45b53d6e0a0ef0d48, type: 3}
     position: {x: -0.00999993, y: 4.37, z: -0.5499998}
+  - prefab: {fileID: 4939804600427074401, guid: 15b2319e327d0124895300e4ba9e64ce, type: 3}
+    position: {x: -0.00999993, y: 4.37, z: -0.5499998}
 --- !u!4 &63095017
 Transform:
   m_ObjectHideFlags: 0
@@ -5349,28 +5351,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveCountdown: 0
-  timeBetweenWaves: 5
+  timeBetweenWaves: 1
   waves:
   - name: First wave
-    enemy: {fileID: -3773044356339577192, guid: 16926b7322b6e39449c59956ac915aa2, type: 3}
-    count: 1
-    rate: 2
-  - name: Second wave
-    enemy: {fileID: -3773044356339577192, guid: 16926b7322b6e39449c59956ac915aa2, type: 3}
+    enemy: {fileID: -3773044356339577192, guid: 5839172184b4eac408f6e698d9b67775, type: 3}
     count: 15
-    rate: 3
-  - name: Third wave
-    enemy: {fileID: 8297359917386953160, guid: bed644d10167b1148b5b0e77d89b4681, type: 3}
-    count: 4
-    rate: 2
-  - name: Fourth wave
-    enemy: {fileID: -3773044356339577192, guid: 16926b7322b6e39449c59956ac915aa2, type: 3}
-    count: 30
     rate: 4
-  - name: Final wave
-    enemy: {fileID: 8297359917386953160, guid: bed644d10167b1148b5b0e77d89b4681, type: 3}
-    count: 3
-    rate: 1
+  - name: Second wave
+    enemy: {fileID: -3773044356339577192, guid: 5839172184b4eac408f6e698d9b67775, type: 3}
+    count: 30
+    rate: 5
+  - name: Hey
+    enemy: {fileID: -3773044356339577192, guid: 5839172184b4eac408f6e698d9b67775, type: 3}
+    count: 70
+    rate: 7
+  - name: So Many!
+    enemy: {fileID: -3773044356339577192, guid: 5839172184b4eac408f6e698d9b67775, type: 3}
+    count: 150
+    rate: 9
+  - name: Bic boys, part one
+    enemy: {fileID: 1328071014130475066, guid: 6f7f4216c97522345a571169ce415a9b, type: 3}
+    count: 4
+    rate: 0.7
+  - name: Bic boys, part two
+    enemy: {fileID: 8265599547939223824, guid: 8e6552ce4f5d44e40a29bb45266f44cc, type: 3}
+    count: 8
+    rate: 1.2
 --- !u!1001 &579711230
 PrefabInstance:
   m_ObjectHideFlags: 0

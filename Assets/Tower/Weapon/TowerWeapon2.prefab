@@ -96,12 +96,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  damageOverTime: 0.3
-  speed: 2
+  damageOverTime: 2
+  damageOverTimer: 1
+  damageOverTimeDuration: 10
+  pierce: 0
+  speed: 3
   range: 30
-  weaponName: Weapon 1
-  slow: 0.5
-  slowDuration: 1
+  weaponName: Weapon
+  info: Slows and deals damage over time
+  slow: 0.3
+  slowDuration: 10
 --- !u!1001 &8108994171872648265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112,6 +116,10 @@ PrefabInstance:
     - target: {fileID: 1240250018707908, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: m_Name
       value: GoopSpray
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379391785057680, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4396671266920006, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: m_RootOrder
@@ -139,7 +147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4396671266920006, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.33
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4396671266920006, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -170,8 +178,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: autoRandomSeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: simulationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: ShapeModule.angle
       value: 16.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: ShapeModule.enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: CollisionModule.enabled
@@ -191,7 +219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: CollisionModule.collisionMessages
@@ -199,15 +227,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: InitialModule.startLifetime.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: InitialModule.startRotation.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: startDelay.maxCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: startDelay.maxCurve.m_Curve.Array.data[1].value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: CollisionModule.multiplyColliderForceByParticleSize
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198463038704093722, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: cullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198463038704093722, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: lengthInSec
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 198463038704093722, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: moveWithTransform
@@ -231,7 +295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198463038704093722, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 30
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 198463038704093722, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: CollisionModule.collisionMessages
@@ -243,15 +307,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198463038704093722, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 3
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 198463038704093722, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 1
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198463038704093722, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: InitialModule.startRotation.scalar
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198463038704093722, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: InitialModule.gravityModifier.scalar
-      value: 0.1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198463038704093722, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: InitialModule.startRotation.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198463038704093722, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198463038704093722, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198463038704093722, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198463038704093722, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199008015739197484, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: m_SortMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 199008015739197484, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: m_Materials.Array.size

@@ -88,7 +88,8 @@ public class ObjectPool : MonoBehaviour
             yield return new WaitForSeconds(1f / wave.rate);
         }
 
-        state = SpawnState.WAITING;
+        WaveCompleted();
+        //state = SpawnState.WAITING;
     }
 
     void SpawnEnemy(Enemy enemy)
@@ -99,7 +100,7 @@ public class ObjectPool : MonoBehaviour
     void AnnounceNextWaveAndStartCountdown()
     {
         state = SpawnState.COUNTING;
-        alert.Alert($"{waves[nextWave].name}: Spawning in 5 seconds", 24, true);
+        alert.Alert($"{waves[nextWave].name}: Spawning in {timeBetweenWaves} seconds", 24, true);
         waveCountdown = timeBetweenWaves;
     }
 

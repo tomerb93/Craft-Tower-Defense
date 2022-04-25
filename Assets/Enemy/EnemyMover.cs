@@ -18,12 +18,8 @@ public class EnemyMover : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        if (gameObject.activeInHierarchy)
-        {
-            StartCoroutine(ProcessHit(other.GetComponentInParent<Weapon>()));
-        }
+        ProcessHit(other.GetComponentInParent<Weapon>());
     }
-
     void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
@@ -40,19 +36,24 @@ public class EnemyMover : MonoBehaviour
         CalculatePath(true);
     }
 
-    IEnumerator ProcessHit(Weapon weapon)
+    void ProcessHit(Weapon weapon)
     {
         if (weapon.HasSlow && !isSlowed)
         {
-            float oldSpeed = currentSpeed;
-            currentSpeed *= (1f - weapon.Slow);
-            isSlowed = true;
-
-            yield return new WaitForSeconds(weapon.SlowDuration);
-
-            currentSpeed = oldSpeed;
-            isSlowed = false;
+            StartCoroutine(ProcessSlow(weapon));
         }
+    }
+
+    IEnumerator ProcessSlow(Weapon weapon)
+    {
+        float oldSpeed = currentSpeed;
+        currentSpeed *= (1f - weapon.Slow);
+        isSlowed = true;
+
+        yield return new WaitForSeconds(weapon.SlowDuration);
+
+        currentSpeed = oldSpeed;
+        isSlowed = false;
     }
 
     void CalculatePath(bool resetPath)

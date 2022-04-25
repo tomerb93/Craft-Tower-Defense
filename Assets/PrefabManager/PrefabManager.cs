@@ -10,6 +10,7 @@ public class PrefabManager : MonoBehaviour
         Obstacle,
         TowerWeapon1,
         TowerWeapon2,
+        TowerWeapon3
     }
 
     [SerializeField] Prefab[] prefabs;

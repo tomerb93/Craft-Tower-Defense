@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,8 +12,13 @@ public class TowerMenuController : MonoBehaviour
 
     Button towerOneBtn;
     Button towerTwoBtn;
+    Button towerThreeBtn;
     Button sellBtn;
     Button closeButton;
+
+    Label towerName;
+    Label towerInfo;
+    Label towerStats;
 
     VisualElement root;
     Tower tower;
@@ -37,8 +43,6 @@ public class TowerMenuController : MonoBehaviour
         QueryViewControls();
         SetOnEventHandlers();
         Hide();
-
-        towerOneBtn.SetEnabled(false);
     }
 
 
@@ -46,6 +50,7 @@ public class TowerMenuController : MonoBehaviour
     {
         towerOneBtn.clicked += TowerOneBtnPressed;
         towerTwoBtn.clicked += TowerTwoBtnPressed;
+        towerThreeBtn.clicked += TowerThreeBtnPressed;
         sellBtn.clicked += SellBtnPressed;
         closeButton.clicked += Hide;
     }
@@ -54,8 +59,12 @@ public class TowerMenuController : MonoBehaviour
     {
         towerOneBtn = root.Q<Button>("tower-1-btn");
         towerTwoBtn = root.Q<Button>("tower-2-btn");
+        towerThreeBtn = root.Q<Button>("tower-3-btn");
         sellBtn = root.Q<Button>("sell-btn");
         closeButton = root.Q<Button>("close-btn");
+        towerName = root.Q<Label>("tower-name");
+        towerInfo = root.Q<Label>("tower-info");
+        towerStats = root.Q<Label>("tower-stats");
     }
 
     public void ToggleVisibility(bool display)
@@ -68,6 +77,9 @@ public class TowerMenuController : MonoBehaviour
     {
         this.tower = tower.GetComponent<Tower>();
         towerWeapon = tower.GetComponentInChildren<Weapon>();
+        towerName.text = towerWeapon.Name;
+        towerInfo.text = towerWeapon.Info;
+        towerStats.text = towerWeapon.Stats;
     }
 
     void Hide()
@@ -77,30 +89,22 @@ public class TowerMenuController : MonoBehaviour
 
     void TowerOneBtnPressed()
     {
-        if (bank.WithdrawBalance(currentAttackCost))
-        {
-            towerWeapon.UpgradeDamage(0.25f);
-            currentAttackCost += 2;
-        }
+        tower.SetWeapon(PrefabManager.PrefabIndices.TowerWeapon1, tower, tower.transform.position);
     }
 
     void TowerTwoBtnPressed()
     {
-        if (bank.WithdrawBalance(currentSpeedCost))
-        {
-            tower.SetWeapon(PrefabManager.PrefabIndices.TowerWeapon2, tower, tower.transform.position);
-            //towerWeapon.UpgradeSpeed(0.5f);
-            //currentSpeedCost++;
-        }
+        tower.SetWeapon(PrefabManager.PrefabIndices.TowerWeapon2, tower, tower.transform.position);
+    }
+
+    void TowerThreeBtnPressed()
+    {
+        tower.SetWeapon(PrefabManager.PrefabIndices.TowerWeapon3, tower, tower.transform.position);
     }
 
     void SellBtnPressed()
     {
-        if (bank.WithdrawBalance(currentSlowCost))
-        {
-            towerWeapon.UpgradeSlow(0.05f);
-            currentSlowCost += 5;
-        }
-        
+        // TODO: Still not working, need to update specific Tile on destruction
+        //Destroy(tower.gameObject);
     }
 }

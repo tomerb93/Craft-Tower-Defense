@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public bool IsDead { get; set; }
+    public bool IsDead { get; set; } = false;
 
     [SerializeField] int balanceReward = 25;
     [SerializeField] int hitpointPenalty = 1;
     [SerializeField] ParticleSystem spawnParticleSystem;
 
     Bank bank;
-    bool isDead = false;
 
     void Awake()
     {

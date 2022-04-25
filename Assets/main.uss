@@ -6,10 +6,10 @@
     margin-right: 25px;
     margin-top: 25px;
     margin-bottom: 25px;
-    border-left-color: rgba(137, 117, 0, 255);
-    border-right-color: rgba(137, 117, 0, 255);
-    border-top-color: rgba(137, 117, 0, 255);
-    border-bottom-color: rgba(137, 117, 0, 255);
+    border-left-color: rgb(137, 117, 0);
+    border-right-color: rgb(137, 117, 0);
+    border-top-color: rgb(137, 117, 0);
+    border-bottom-color: rgb(137, 117, 0);
     border-left-width: 2.5px;
     border-right-width: 2.5px;
     border-top-width: 2.5px;
@@ -30,5 +30,9 @@
     margin-right: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
-    background-color: rgba(84, 46, 46, 255);
+    background-color: rgb(84, 46, 46);
+}
+
+.tower-menu-label {
+    color: rgba(255, 255, 255, 255);
 }
