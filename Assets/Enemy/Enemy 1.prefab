@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723f8770062326e4e9d8d6340ca4f7d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHitpoints: 3
+  startingHitpoints: 10
   armor: 1
   healthBar: {fileID: 5310100155028647839}
   deathVFX: {fileID: 5488010430622927443}
@@ -14614,15 +14614,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5509592951473034725, guid: 3fca19492bec89147999b24db255de1e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.02
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 5509592951473034725, guid: 3fca19492bec89147999b24db255de1e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.02
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 5509592951473034725, guid: 3fca19492bec89147999b24db255de1e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.02
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 5509592951473034725, guid: 3fca19492bec89147999b24db255de1e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14674,6 +14674,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5509592951473034726, guid: 3fca19492bec89147999b24db255de1e, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5509592951473034727, guid: 3fca19492bec89147999b24db255de1e, type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5509592951473034729, guid: 3fca19492bec89147999b24db255de1e, type: 3}

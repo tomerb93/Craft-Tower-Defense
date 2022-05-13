@@ -9781,7 +9781,7 @@ MonoBehaviour:
   pierce: 0
   speed: 3
   range: 20
-  weaponName: Weapon
+  weaponName: Rifle Tower
   info: Basic weapon, solid single target damage
   slow: 0
   slowDuration: 0

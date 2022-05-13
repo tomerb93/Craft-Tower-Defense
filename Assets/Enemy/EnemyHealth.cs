@@ -26,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
 
     void ProcessHit(Weapon weapon)
     {
-        if (weapon.HasDOT)
+        if (weapon.HasDOT && !isDotted)
         {
             StartCoroutine(ProcessDotDamage(weapon));
         }
@@ -58,19 +58,19 @@ public class EnemyHealth : MonoBehaviour
 
             yield return new WaitForSeconds(weapon.DamageOverTimer);
         }
-        
-        isDotted = false;
+
         healthBar.SetColor(Color.red);
+        isDotted = false;
     }
 
     void ProcessDeath()
     {
         var enemy = GetComponent<Enemy>();
 
-        if (!deathVFX.isPlaying)
-        {
-            deathVFX.Play();
-        }
+        //if (!deathVFX.isPlaying)
+        //{
+        //    deathVFX.Play();
+        //}
         enemy.RewardBalance();
         StopAllCoroutines();
         GetComponentInChildren<MeshRenderer>().enabled = false;
