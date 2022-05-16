@@ -1,10 +1,15 @@
 using System;
+using Assets.Interfaces;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class TowerMenuController : MonoBehaviour
+public class TowerMenuController : MonoBehaviour, IViewWithButton
 {
     public bool IsOpened { get { return isOpened; } }
+    public Button TowerOneBtn => towerOneBtn;
+    public Button TowerTwoBtn => towerTwoBtn;
+
+    public Button TowerThreeBtn => towerThreeBtn;
 
     [SerializeField] int startingAttackCost = 20;
     [SerializeField] int startingSpeedCost = 10;
@@ -43,10 +48,18 @@ public class TowerMenuController : MonoBehaviour
         QueryViewControls();
         SetOnEventHandlers();
         Hide();
+        DisableButtons();
+    }
+
+    void DisableButtons()
+    {
+        towerOneBtn.SetEnabled(false);
+        towerTwoBtn.SetEnabled(false);
+        towerThreeBtn.SetEnabled(false);
     }
 
 
-    void SetOnEventHandlers()
+    public void SetOnEventHandlers()
     {
         towerOneBtn.clicked += TowerOneBtnPressed;
         towerTwoBtn.clicked += TowerTwoBtnPressed;
@@ -55,7 +68,7 @@ public class TowerMenuController : MonoBehaviour
         closeButton.clicked += Hide;
     }
 
-    void QueryViewControls()
+    public void QueryViewControls()
     {
         towerOneBtn = root.Q<Button>("tower-1-btn");
         towerTwoBtn = root.Q<Button>("tower-2-btn");

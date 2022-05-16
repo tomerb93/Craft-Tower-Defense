@@ -1,7 +1,7 @@
 .craft-menu-button {
-    flex-grow: 1;
+    flex-grow: 0;
     flex-shrink: 1;
-    flex-basis: auto;
+    flex-basis: 100px;
     margin-left: 25px;
     margin-right: 25px;
     margin-top: 25px;
@@ -34,5 +34,5 @@
 }
 
 .tower-menu-label {
-    color: rgba(255, 255, 255, 255);
+    color: rgb(255, 255, 255);
 }
