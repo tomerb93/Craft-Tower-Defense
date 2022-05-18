@@ -5,7 +5,11 @@ using UnityEngine.UIElements;
 
 public class TowerMenuController : MonoBehaviour, IViewWithButton
 {
-    public bool IsOpened { get { return isOpened; } }
+    public bool IsOpened
+    {
+        get { return isOpened; }
+    }
+
     public Button TowerOneBtn => towerOneBtn;
     public Button TowerTwoBtn => towerTwoBtn;
 

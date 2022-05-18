@@ -4,14 +4,12 @@ using Assets.Interfaces;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-
-// TODO: Create base interface/abstract class ViewController
-// that declares repeating methods
 public class AlertController : MonoBehaviour, IView
 {
     Label alert;
     VisualElement root;
-    float showTimer = 3f;
+    float showTimer = 2f;
+    bool isOpened = false;
 
     void Awake()
     {
@@ -31,17 +29,21 @@ public class AlertController : MonoBehaviour, IView
         alert.style.fontSize = fontSize;
         alert.style.unityFontStyleAndWeight = bold ? FontStyle.Bold : FontStyle.Normal;
 
-        StartCoroutine(ProcessAlertRequest());
-
+        if (!isOpened)
+        {
+            StartCoroutine(ProcessAlertRequest());
+        }
     }
 
     IEnumerator ProcessAlertRequest()
     {
         root.style.display = DisplayStyle.Flex;
+        isOpened = true;
 
         yield return new WaitForSeconds(showTimer);
 
         root.style.display = DisplayStyle.None;
+        isOpened = false;
     }
 
     public void QueryViewControls()

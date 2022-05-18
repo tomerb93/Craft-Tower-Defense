@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class Bank : MonoBehaviour
 {
-    public int CurrentBalance { get { return currentBalance; } }
-    public int CurrentObstacleCount { get { return currentObstacleCount; } }
-    public int CurrentHitpoints{ get { return currentHitpoints; } }
+    public int CurrentBalance
+    {
+        get { return currentBalance; }
+    }
+
+    public int CurrentObstacleCount
+    {
+        get { return currentObstacleCount; }
+    }
+
+    public int CurrentHitpoints
+    {
+        get { return currentHitpoints; }
+    }
 
     [SerializeField] int startingBalance = 150;
     [SerializeField] int startingObstacleCount = 10;
@@ -24,7 +35,7 @@ public class Bank : MonoBehaviour
     {
         bankMenu = FindObjectOfType<BankMenuController>();
         game = FindObjectOfType<GameManager>();
-        
+
         currentBalance = startingBalance;
         currentObstacleCount = startingObstacleCount;
         currentHitpoints = startingHitpoints;

@@ -2,21 +2,75 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public float Damage { get { return damage; } }
-    public float Speed { get { return speed; } }
-    public float Range { get { return range; } }
-    public float Pierce { get { return pierce; } }
-    public string Name { get { return weaponName; } }
-    public float Slow { get { return slow; } }
-    public float SlowDuration { get { return slowDuration; } }
-    public bool HasSlow { get { return slow > 0; } }
-    public float DamageOverTime { get { return damageOverTime; } }
-    public bool HasDOT { get { return damageOverTime > 0; } }
-    public float DamageOverTimer { get { return damageOverTimer; } }
-    public int DamageOverTimeDuration { get { return damageOverTimeDuration; } }
-    public string Info { get { return info; } }
+    public float Damage
+    {
+        get { return damage; }
+    }
 
-    public string Stats { get { return $"Damage: {damage}, DoT: {damageOverTime}, Speed: {speed}, Slow: {slow}"; } }
+    public float Speed
+    {
+        get { return speed; }
+    }
+
+    public float Range
+    {
+        get { return range; }
+    }
+
+    public float Pierce
+    {
+        get { return pierce; }
+    }
+
+    public string Name
+    {
+        get { return weaponName; }
+    }
+
+    public float Slow
+    {
+        get { return slow; }
+    }
+
+    public float SlowDuration
+    {
+        get { return slowDuration; }
+    }
+
+    public bool HasSlow
+    {
+        get { return slow > 0; }
+    }
+
+    public float DamageOverTime
+    {
+        get { return damageOverTime; }
+    }
+
+    public bool HasDOT
+    {
+        get { return damageOverTime > 0; }
+    }
+
+    public float DamageOverTimer
+    {
+        get { return damageOverTimer; }
+    }
+
+    public int DamageOverTimeDuration
+    {
+        get { return damageOverTimeDuration; }
+    }
+
+    public string Info
+    {
+        get { return info; }
+    }
+
+    public string Stats
+    {
+        get { return $"Damage: {damage}, DoT: {damageOverTime}, Speed: {speed}, Slow: {slow}"; }
+    }
 
 
     [SerializeField] float damage = 0.5f;
@@ -38,7 +92,7 @@ public class Weapon : MonoBehaviour
     {
         bulletParticleSystem = GetComponentInChildren<ParticleSystem>();
     }
-     
+
     void Start()
     {
         SetParticleSystemProperties();
@@ -59,7 +113,6 @@ public class Weapon : MonoBehaviour
     {
         speed += amount;
         SetParticleSystemProperties();
-
     }
 
     public void UpgradeSlow(float amount)

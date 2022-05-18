@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         alert.Alert("You lose! Reloading level...", 24, true);
 
         yield return new WaitForSeconds(reloadOnLossTimer);
-        
+
         ReloadLevel();
     }
 }

@@ -43,6 +43,7 @@ public class CoordinateLabeler : MonoBehaviour
         {
             label.enabled = !label.IsActive();
         }
+
         if (Input.GetKeyDown(KeyCode.D))
         {
             state = state == LabelerState.Coordinates ? LabelerState.O : LabelerState.Coordinates;
@@ -96,9 +97,8 @@ public class CoordinateLabeler : MonoBehaviour
             default:
                 break;
         }
-        
-
     }
+
     void UpdateTileName()
     {
         transform.parent.name = coordinates.ToString();

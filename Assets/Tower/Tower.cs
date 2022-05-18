@@ -27,9 +27,9 @@ public class Tower : MonoBehaviour
     {
         var prefabs = FindObjectOfType<PrefabManager>();
         // Instantiate tower base
-        var tower = Instantiate(prefabs.GetPrefab(PrefabManager.PrefabIndices.Tower), 
-            position, 
-            Quaternion.identity)
+        var tower = Instantiate(prefabs.GetPrefab(PrefabManager.PrefabIndices.Tower),
+                position,
+                Quaternion.identity)
             .GetComponent<Tower>();
 
         // Instantiate starting tower weapon
@@ -53,4 +53,3 @@ public class Tower : MonoBehaviour
             Quaternion.identity, tower.transform).GetComponent<Weapon>();
     }
 }
-    

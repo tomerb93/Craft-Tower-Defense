@@ -86,7 +86,8 @@ public class Tile : MonoBehaviour
     {
         if (!pathfinder.WillBlockPath(coordinates))
         {
-            placedTower = prefabManager.GetPrefab(PrefabManager.PrefabIndices.Tower).GetComponent<Tower>().CreateTower(transform.position);
+            placedTower = prefabManager.GetPrefab(PrefabManager.PrefabIndices.Tower).GetComponent<Tower>()
+                .CreateTower(transform.position);
             if (placedTower != null)
             {
                 gridManager.BlockNode(coordinates);
@@ -100,7 +101,8 @@ public class Tile : MonoBehaviour
     {
         if (!pathfinder.WillBlockPath(coordinates))
         {
-            bool success = prefabManager.GetPrefab(PrefabManager.PrefabIndices.Obstacle).GetComponent<Obstacle>().CreateObstacle(transform.position);
+            bool success = prefabManager.GetPrefab(PrefabManager.PrefabIndices.Obstacle).GetComponent<Obstacle>()
+                .CreateObstacle(transform.position);
             if (success)
             {
                 gridManager.BlockNode(coordinates);

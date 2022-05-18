@@ -3,8 +3,15 @@ using UnityEngine;
 
 public class Pathfinder : MonoBehaviour
 {
-    public Vector2Int StartCoordinates { get { return startCoordinates; } }
-    public Vector2Int DestinationCoordinates { get { return destinationCoordinates; } }
+    public Vector2Int StartCoordinates
+    {
+        get { return startCoordinates; }
+    }
+
+    public Vector2Int DestinationCoordinates
+    {
+        get { return destinationCoordinates; }
+    }
 
     [SerializeField] Vector2Int startCoordinates;
     [SerializeField] Vector2Int destinationCoordinates;

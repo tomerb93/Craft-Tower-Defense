@@ -20,6 +20,7 @@ public class EnemyMover : MonoBehaviour
     {
         ProcessHit(other.GetComponentInParent<Weapon>());
     }
+
     void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
@@ -83,7 +84,7 @@ public class EnemyMover : MonoBehaviour
             Vector3 endPosition = gridManager.GetPositionFromCoordinates(path[i].coordinates);
 
             endPosition = RandomizeEndPosition(endPosition, i);
-            
+
             float travelPercent = 0f;
 
             transform.LookAt(endPosition);

@@ -13,6 +13,7 @@ public class TargetLocator : MonoBehaviour
         {
             SetWeapon();
         }
+
         FindClosestTarget();
         if (target != null)
         {
@@ -33,7 +34,7 @@ public class TargetLocator : MonoBehaviour
     void AimAndFireWeapon()
     {
         float targetDistance = Vector3.Distance(transform.position, target.position);
-        
+
         if (targetDistance < weapon.Range)
         {
             weapon.transform.LookAt(target);
@@ -43,7 +44,6 @@ public class TargetLocator : MonoBehaviour
         {
             FireWeapon(false);
         }
-
     }
 
     private void FireWeapon(bool isActive)

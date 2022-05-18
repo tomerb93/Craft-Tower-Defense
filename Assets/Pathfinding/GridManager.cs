@@ -3,8 +3,15 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    public Dictionary<Vector2Int, Node> Grid { get { return grid; } }
-    public int UnityGridSize { get { return unityGridSize; } }
+    public Dictionary<Vector2Int, Node> Grid
+    {
+        get { return grid; }
+    }
+
+    public int UnityGridSize
+    {
+        get { return unityGridSize; }
+    }
 
     [SerializeField] Vector2Int gridSize;
     [SerializeField] int unityGridSize = 10;

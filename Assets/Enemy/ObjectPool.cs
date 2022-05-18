@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    public enum SpawnState {  SPAWNING, WAITING, COUNTING };
+    public enum SpawnState
+    {
+        SPAWNING,
+        WAITING,
+        COUNTING
+    };
 
     [SerializeField] float waveCountdown;
     [SerializeField] float timeBetweenWaves = 5f;
@@ -47,9 +52,9 @@ public class ObjectPool : MonoBehaviour
             {
                 StartCoroutine(SpawnWave(waves[nextWave]));
             }
-        } else
+        }
+        else
         {
-
             waveCountdown -= Time.deltaTime;
         }
     }
@@ -65,6 +70,7 @@ public class ObjectPool : MonoBehaviour
                 wave.count *= 2;
                 wave.rate *= 1.2f;
             }
+
             nextWave = 0;
         }
         else
@@ -118,7 +124,7 @@ public class ObjectPool : MonoBehaviour
                 return false;
             }
         }
-        
+
         return true;
     }
 }

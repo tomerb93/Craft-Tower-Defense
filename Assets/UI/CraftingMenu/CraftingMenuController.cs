@@ -6,10 +6,9 @@ using UnityEngine.UIElements;
 
 public class CraftingMenuController : MonoBehaviour, IViewWithButton
 {
-    
     Button levelOneBtnOne;
     Button levelOneBtnTwo;
-    
+
     VisualElement root;
     Bank bank;
     bool isOpened = false;
@@ -58,11 +57,13 @@ public class CraftingMenuController : MonoBehaviour, IViewWithButton
     {
         towerMenu.TowerTwoBtn.SetEnabled(true);
         alert.Alert("Purchased weapon: Goop Tower");
+        levelOneBtnTwo.SetEnabled(false);
     }
 
     private void LevelOneBtnOnePressed()
     {
         towerMenu.TowerThreeBtn.SetEnabled(true);
         alert.Alert("Purchased weapon: Cryogenic Tower");
+        levelOneBtnOne.SetEnabled(false);
     }
 }

@@ -22,6 +22,6 @@ public class PrefabManager : MonoBehaviour
 
     public Vector3 GetPrefabPosition(PrefabIndices index)
     {
-        return prefabs[(int) index].position;
+        return prefabs[(int)index].position;
     }
 }
