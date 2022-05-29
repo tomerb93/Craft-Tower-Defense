@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] float reloadOnLossTimer = 2f;
 
     AlertController alert;
+    public bool IsPaused => isPaused;
+
+    private bool isPaused;
 
     void Awake()
     {
@@ -20,6 +23,18 @@ public class GameManager : MonoBehaviour
         {
             ReloadLevel();
         }
+    }
+
+    public void PauseLevel()
+    {
+        Time.timeScale = 0;
+        isPaused = true;
+    }
+
+    public void ResumeLevel()
+    {
+        Time.timeScale = 1;
+        isPaused = false;
     }
 
     public void ReloadLevel()

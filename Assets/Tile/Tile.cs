@@ -88,12 +88,12 @@ public class Tile : MonoBehaviour
         {
             placedTower = prefabManager.GetPrefab(PrefabManager.PrefabIndices.Tower).GetComponent<Tower>()
                 .CreateTower(transform.position);
-            if (placedTower != null)
-            {
-                gridManager.BlockNode(coordinates);
-                pathfinder.BroadcastRecalculatePath();
-                state = TileState.TowerPlaced;
-            }
+            
+            if (placedTower == null) return;
+            
+            gridManager.BlockNode(coordinates);
+            pathfinder.BroadcastRecalculatePath();
+            state = TileState.TowerPlaced;
         }
     }
 
@@ -103,12 +103,12 @@ public class Tile : MonoBehaviour
         {
             bool success = prefabManager.GetPrefab(PrefabManager.PrefabIndices.Obstacle).GetComponent<Obstacle>()
                 .CreateObstacle(transform.position);
-            if (success)
-            {
-                gridManager.BlockNode(coordinates);
-                pathfinder.BroadcastRecalculatePath();
-                state = TileState.ObstaclePlaced;
-            }
+            
+            if (!success) return;
+
+            gridManager.BlockNode(coordinates);
+            pathfinder.BroadcastRecalculatePath();
+            state = TileState.ObstaclePlaced;
         }
     }
 }
