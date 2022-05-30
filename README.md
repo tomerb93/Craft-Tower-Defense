@@ -54,3 +54,7 @@ in various events.
 17-04-22: [Design updates](https://youtu.be/7FFUguo6MXk)
 
 Particle systems added for various events, randomized movement implemented
+
+19-05-22: [Updates](https://youtu.be/OGOGkRUIAT0)
+
+Additional tower types added, the player can now pause and resume the game to reconfigure his defensive setup.
