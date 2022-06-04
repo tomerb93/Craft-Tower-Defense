@@ -23,6 +23,11 @@ public class GameManager : MonoBehaviour
         {
             ReloadLevel();
         }
+
+        if (Input.GetKey(KeyCode.N))
+        {
+            LoadNextLevel();
+        }
     }
 
     public void PauseLevel()
@@ -41,6 +46,13 @@ public class GameManager : MonoBehaviour
     {
         int currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneBuildIndex);
+    }
+
+    public void LoadNextLevel()
+    {
+        // TODO: If last level, loop back to first level for now - change this to victory screen
+        int nextSceneBuildIndex = (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings;
+        SceneManager.LoadScene(nextSceneBuildIndex);
     }
 
     public void ProcessLoss()

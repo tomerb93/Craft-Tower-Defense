@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7272911285833390617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7272911285833390615}
+  - component: {fileID: 7272911285833390614}
+  m_Layer: 0
+  m_Name: PrefabManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7272911285833390615
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7272911285833390617}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7272911285833390614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7272911285833390617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ca47447baf9064cbc0e09c72ff2474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - prefab: {fileID: 449276135363878975, guid: 1644d75a60faa384db44af389bfdfa22, type: 3}
+    position: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 1137958906326775787, guid: 4f920e5bb7763084e957200d2a458314, type: 3}
+    position: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 8286716194305463319, guid: 5bc6f2ee494236f4b927a08b974d70d7, type: 3}
+    position: {x: -0.00999993, y: 4.37, z: -0.5499998}
+  - prefab: {fileID: 4939804600427074401, guid: 18ed18903dfc01e45b53d6e0a0ef0d48, type: 3}
+    position: {x: -0.00999993, y: 4.37, z: -0.5499998}
+  - prefab: {fileID: 4939804600427074401, guid: 15b2319e327d0124895300e4ba9e64ce, type: 3}
+    position: {x: -0.00999993, y: 4.37, z: -0.5499998}

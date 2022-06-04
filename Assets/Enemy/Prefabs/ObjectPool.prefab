@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2681457072157978581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2681457072157978579}
+  - component: {fileID: 2681457072157978578}
+  - component: {fileID: 2681457072157978576}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2681457072157978579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2681457072157978581}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2681457072157978578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2681457072157978581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be405b0a0330624c9a90ef00950e9f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startCoordinates: {x: 0, y: 0}
+  destinationCoordinates: {x: 17, y: 9}
+--- !u!114 &2681457072157978576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2681457072157978581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26f65d0746156a4ba383c5ce4a27d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveCountdown: 10
+  timeBetweenWaves: 1
+  waves:
+  - name: First wave
+    enemy: {fileID: -3773044356339577192, guid: 5839172184b4eac408f6e698d9b67775, type: 3}
+    count: 15
+    rate: 4
+  - name: Second wave
+    enemy: {fileID: -3773044356339577192, guid: 5839172184b4eac408f6e698d9b67775, type: 3}
+    count: 30
+    rate: 5
+  - name: Hey
+    enemy: {fileID: -3773044356339577192, guid: 5839172184b4eac408f6e698d9b67775, type: 3}
+    count: 70
+    rate: 7
+  - name: So Many!
+    enemy: {fileID: -3773044356339577192, guid: 5839172184b4eac408f6e698d9b67775, type: 3}
+    count: 150
+    rate: 9
+  - name: Bic boys, part one
+    enemy: {fileID: 1328071014130475066, guid: 6f7f4216c97522345a571169ce415a9b, type: 3}
+    count: 4
+    rate: 0.7
+  - name: Bic boys, part two
+    enemy: {fileID: 8265599547939223824, guid: 8e6552ce4f5d44e40a29bb45266f44cc, type: 3}
+    count: 8
+    rate: 1.2
