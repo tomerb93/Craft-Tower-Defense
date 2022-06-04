@@ -1,19 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Assets.Interfaces;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UIElements;
 
 public class TopMenuController : MonoBehaviour, IViewWithButton
 {
-    [SerializeField] Sprite pauseSprite;
-    [SerializeField] Sprite playSprite;
-
     VisualElement root;
     Button pauseResumeBtn;
     GameManager game;
+
     void Awake()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
