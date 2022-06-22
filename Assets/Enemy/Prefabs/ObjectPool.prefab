@@ -58,8 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e26f65d0746156a4ba383c5ce4a27d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveCountdown: 10
-  timeBetweenWaves: 1
+  waveCountdown: 5
+  timeBetweenWaves: 5
   waves:
   - name: First wave
     enemy: {fileID: -3773044356339577192, guid: 5839172184b4eac408f6e698d9b67775, type: 3}

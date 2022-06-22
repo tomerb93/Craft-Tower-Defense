@@ -67,10 +67,10 @@ public class EnemyHealth : MonoBehaviour
     {
         var enemy = GetComponent<Enemy>();
 
-        //if (!deathVFX.isPlaying)
-        //{
-        //    deathVFX.Play();
-        //}
+        if (!deathVFX.isPlaying)
+        {
+            deathVFX.Play();
+        }
         enemy.RewardBalance();
         StopAllCoroutines();
         GetComponentInChildren<MeshRenderer>().enabled = false;

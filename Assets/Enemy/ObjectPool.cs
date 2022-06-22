@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObjectPool : MonoBehaviour
 {
@@ -20,10 +21,12 @@ public class ObjectPool : MonoBehaviour
     float searchCountdown = 1f;
 
     AlertController alert;
+    GameManager game;
 
     void Awake()
     {
         alert = FindObjectOfType<AlertController>();
+        game = FindObjectOfType<GameManager>();
     }
 
     void Start()
@@ -64,14 +67,23 @@ public class ObjectPool : MonoBehaviour
         alert.Alert("Wave completed", 24, true);
         if (nextWave + 1 > waves.Length - 1)
         {
-            alert.Alert("All waves complete, increasing difficulty...", 24, true);
-            foreach (Wave wave in waves)
+            // TODO : make this dynamic by using a new method in gameManager
+            if (SceneManager.GetActiveScene().buildIndex == 2) 
             {
-                wave.count *= 2;
-                wave.rate *= 1.2f;
+                alert.Alert("All waves complete, increasing difficulty...", 24, true);
+                foreach (Wave wave in waves)
+                {
+                    wave.count *= 2;
+                    wave.rate *= 1.2f;
+                }
+                
             }
-
+            else
+            {
+                game.LoadNextLevel();
+            }
             nextWave = 0;
+
         }
         else
         {
