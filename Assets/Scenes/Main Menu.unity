@@ -280,6 +280,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 619948339}
   m_OnClick:
     m_PersistentCalls:
+<<<<<<< HEAD
       m_Calls:
       - m_Target: {fileID: 1255382584}
         m_TargetAssemblyTypeName: MainMenu, MainAssembly
@@ -293,6 +294,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+=======
+      m_Calls: []
+>>>>>>> master
 --- !u!114 &619948339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,7 +835,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< HEAD
   m_text: QUIT
+=======
+  m_text: 'EXIT
+
+'
+>>>>>>> master
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
