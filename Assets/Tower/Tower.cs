@@ -20,10 +20,10 @@ public class Tower : MonoBehaviour
             return null;
         }
 
-        return bank.WithdrawBalance(cost) ? InstantiateTower(position) : null;
+        return bank.WithdrawBalance(cost) ? BuildTower(position) : null;
     }
 
-    private Tower InstantiateTower(Vector3 position)
+    private Tower BuildTower(Vector3 position)
     {
         var prefabs = FindObjectOfType<PrefabManager>();
         // Instantiate tower base
@@ -33,12 +33,12 @@ public class Tower : MonoBehaviour
             .GetComponent<Tower>();
 
         // Instantiate starting tower weapon
-        SetWeapon(PrefabManager.PrefabIndices.TowerWeapon1, tower, position);
+        SetTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon1, tower, position);
 
         return tower;
     }
 
-    public void SetWeapon(PrefabManager.PrefabIndices weaponIndex, Tower tower, Vector3 position)
+    public void SetTowerWeapon(PrefabManager.PrefabIndices weaponIndex, Tower tower, Vector3 position)
     {
         var prefabs = FindObjectOfType<PrefabManager>();
 

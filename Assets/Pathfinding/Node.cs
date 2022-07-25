@@ -9,6 +9,8 @@ public class Node
     public bool isPath;
     public bool isSelected;
     public Node connectedTo;
+    public Tower placedTower;
+    public bool obstaclePlaced;
 
     public Node(Vector2Int coordinates, bool isWalkable)
     {

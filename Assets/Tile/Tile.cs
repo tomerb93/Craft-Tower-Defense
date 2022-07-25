@@ -17,8 +17,6 @@ public class Tile : MonoBehaviour
     Pathfinder pathfinder;
     Vector2Int coordinates;
     TowerMenuController towerMenu;
-    Tower placedTower;
-    TileState state = TileState.Vacant;
     PrefabManager prefabManager;
 
     void Awake()
@@ -38,14 +36,15 @@ public class Tile : MonoBehaviour
             if (!isPlaceable)
             {
                 gridManager.BlockNode(coordinates);
-                state = TileState.Blocked;
             }
         }
     }
 
     void OnMouseOver()
     {
-        if (state == TileState.Vacant && !towerMenu.IsOpened)
+        if (!gridManager.NodeIsTaken(coordinates) && 
+            gridManager.GetNode(coordinates).isWalkable &&
+            !towerMenu.IsOpened)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -57,7 +56,7 @@ public class Tile : MonoBehaviour
                 InstantiateObstacle();
             }
         }
-        else if (state == TileState.TowerPlaced)
+        else if (gridManager.GetNode(coordinates).placedTower != null) // Tower placed in current tile
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -70,7 +69,7 @@ public class Tile : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 towerMenu.ToggleVisibility(false);
-                gridManager.SelectTile(new Vector2Int(-1, -1)); // To deselect towers w/o selecting
+                gridManager.SelectNodeTile(new Vector2Int(-1, -1)); // To deselect towers w/o selecting
             }
         }
     }
@@ -78,22 +77,23 @@ public class Tile : MonoBehaviour
     void BindAndDisplaySelectedTowerMenu()
     {
         towerMenu.ToggleVisibility(true);
-        towerMenu.BindSelectedTower(placedTower);
-        gridManager.SelectTile(coordinates);
+        towerMenu.BindSelectedTower(coordinates);
+        gridManager.SelectNodeTile(coordinates);
     }
 
     void InstantiateTower()
     {
         if (!pathfinder.WillBlockPath(coordinates))
         {
-            placedTower = prefabManager.GetPrefab(PrefabManager.PrefabIndices.Tower).GetComponent<Tower>()
+            Tower placedTower = prefabManager.GetPrefab(PrefabManager.PrefabIndices.Tower).GetComponent<Tower>()
                 .CreateTower(transform.position);
             
-            if (placedTower == null) return;
-            
+            if (!placedTower) return;
+
             gridManager.BlockNode(coordinates);
+            gridManager.SetNodeTower(placedTower, coordinates);
+
             pathfinder.BroadcastRecalculatePath();
-            state = TileState.TowerPlaced;
         }
     }
 
@@ -107,8 +107,9 @@ public class Tile : MonoBehaviour
             if (!success) return;
 
             gridManager.BlockNode(coordinates);
+            gridManager.GetNode(coordinates).obstaclePlaced = true;
+
             pathfinder.BroadcastRecalculatePath();
-            state = TileState.ObstaclePlaced;
         }
     }
 }

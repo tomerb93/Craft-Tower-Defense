@@ -12,12 +12,7 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
 
     public Button TowerOneBtn => towerOneBtn;
     public Button TowerTwoBtn => towerTwoBtn;
-
     public Button TowerThreeBtn => towerThreeBtn;
-
-    [SerializeField] int startingAttackCost = 20;
-    [SerializeField] int startingSpeedCost = 10;
-    [SerializeField] int startingSlowCost = 50;
 
     Button towerOneBtn;
     Button towerTwoBtn;
@@ -33,21 +28,18 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
     Tower tower;
     Weapon towerWeapon;
     Bank bank;
-
-    int currentAttackCost;
-    int currentSpeedCost;
-    int currentSlowCost;
+    GridManager gridManager;
+    Pathfinder pathfinder;
 
     bool isOpened = false;
+    Vector2Int coordinates;
 
     void Awake()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
         bank = FindObjectOfType<Bank>();
-
-        currentAttackCost = startingAttackCost;
-        currentSpeedCost = startingSpeedCost;
-        currentSlowCost = startingSlowCost;
+        gridManager = FindObjectOfType<GridManager>();
+        pathfinder = FindObjectOfType<Pathfinder>();
 
         QueryViewControls();
         SetOnEventHandlers();
@@ -90,10 +82,11 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
         root.style.display = display ? DisplayStyle.Flex : DisplayStyle.None;
     }
 
-    public void BindSelectedTower(Tower tower)
+    public void BindSelectedTower(Vector2Int coordinatesOfNode)
     {
-        this.tower = tower.GetComponent<Tower>();
-        towerWeapon = tower.GetComponentInChildren<Weapon>();
+        this.tower = gridManager.GetNode(coordinatesOfNode).placedTower;
+        this.coordinates = coordinatesOfNode;
+        towerWeapon = tower.GetComponent<Tower>().GetComponentInChildren<Weapon>();
         towerName.text = towerWeapon.Name;
         towerInfo.text = towerWeapon.Info;
         towerStats.text = towerWeapon.Stats;
@@ -106,22 +99,27 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
 
     void TowerOneBtnPressed()
     {
-        tower.SetWeapon(PrefabManager.PrefabIndices.TowerWeapon1, tower, tower.transform.position);
+        tower.SetTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon1, tower, tower.transform.position);
     }
 
     void TowerTwoBtnPressed()
     {
-        tower.SetWeapon(PrefabManager.PrefabIndices.TowerWeapon2, tower, tower.transform.position);
+        tower.SetTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon2, tower, tower.transform.position);
     }
 
     void TowerThreeBtnPressed()
     {
-        tower.SetWeapon(PrefabManager.PrefabIndices.TowerWeapon3, tower, tower.transform.position);
+        tower.SetTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon3, tower, tower.transform.position);
     }
 
     void SellBtnPressed()
     {
         // TODO: Still not working, need to update specific Tile on destruction
-        //Destroy(tower.gameObject);
+        Destroy(tower.gameObject);
+        tower = null;
+        gridManager.GetNode(coordinates).placedTower = null;
+        gridManager.FreeNode(coordinates);
+        gridManager.SelectNodeTile(new Vector2Int(-1,-1));
+        pathfinder.BroadcastRecalculatePath();
     }
 }

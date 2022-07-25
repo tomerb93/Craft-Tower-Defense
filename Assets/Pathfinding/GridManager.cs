@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -51,6 +52,27 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    public void FreeNode(Vector2Int coordinates)
+    {
+        if (grid.ContainsKey(coordinates))
+        {
+            grid[coordinates].isWalkable = true;
+        }
+    }
+
+    public bool NodeIsTaken(Vector2Int coordinates)
+    {
+        if (grid.ContainsKey(coordinates))
+        {
+            if (grid[coordinates].obstaclePlaced || grid[coordinates].placedTower != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public Vector3 GetPositionFromCoordinates(Vector2Int coordinates)
     {
         Vector3 position = new Vector3();
@@ -81,7 +103,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public void SelectTile(Vector2Int coordinates)
+    public void SelectNodeTile(Vector2Int coordinates)
     {
         // deselect all previous tiles
         foreach (var entry in grid)
@@ -92,6 +114,14 @@ public class GridManager : MonoBehaviour
         if (grid.ContainsKey(coordinates))
         {
             grid[coordinates].isSelected = true;
+        }
+    }
+
+    public void SetNodeTower(Tower tower, Vector2Int coordinates)
+    {
+        if (grid.ContainsKey(coordinates))
+        {
+            grid[coordinates].placedTower = tower;
         }
     }
 }

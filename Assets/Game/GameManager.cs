@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public bool IsPaused => isPaused;
 
     private bool isPaused;
+    int mainMenuIndex = 0;
 
     void Awake()
     {
@@ -42,6 +43,11 @@ public class GameManager : MonoBehaviour
         isPaused = false;
     }
 
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(mainMenuIndex);
+    }
+
     public void ReloadLevel()
     {
         int currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
@@ -62,10 +68,10 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ProcessLossRequest()
     {
-        alert.Alert("You lose! Reloading level...", 24, true);
+        alert.Alert("YOU LOSE", 24, true);
 
         yield return new WaitForSeconds(reloadOnLossTimer);
 
-        ReloadLevel();
+        LoadMainMenu();
     }
 }
