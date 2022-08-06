@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     private bool isPaused;
     int mainMenuIndex = 0;
+    bool isLosing = false;
 
     void Awake()
     {
@@ -63,15 +64,23 @@ public class GameManager : MonoBehaviour
 
     public void ProcessLoss()
     {
-        StartCoroutine(ProcessLossRequest());
+        if (!isLosing)
+        {
+            StartCoroutine(ProcessLossRequest());
+        }
+        
     }
 
     IEnumerator ProcessLossRequest()
     {
+        isLosing = true;
+
         alert.Alert("YOU LOSE", 24, true);
 
         yield return new WaitForSeconds(reloadOnLossTimer);
 
         LoadMainMenu();
+
+        isLosing = false;
     }
 }

@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="/Assets/main.uss" />
     <ui:VisualElement style="flex-grow: 1; align-items: flex-end; justify-content: flex-end;">
-        <ui:VisualElement style="flex-basis: auto; height: 134px; flex-direction: column; width: 339px; align-items: center; justify-content: center; flex-wrap: nowrap; font-size: 12px; margin-bottom: 0; flex-grow: 0; flex-shrink: 1; opacity: 1; visibility: visible; background-color: rgb(43, 43, 43);">
+        <ui:VisualElement style="flex-basis: auto; height: 134px; flex-direction: column; width: 400px; align-items: center; justify-content: center; flex-wrap: nowrap; font-size: 12px; margin-bottom: 0; flex-grow: 0; flex-shrink: 1; opacity: 1; visibility: visible; background-color: rgb(43, 43, 43);">
             <ui:VisualElement style="flex-grow: 1; flex-direction: column; align-items: stretch; justify-content: space-between; flex-wrap: nowrap; position: relative; overflow: visible; display: flex; left: auto; letter-spacing: 0; background-color: rgba(60, 60, 60, 0);">
                 <ui:Label text="Label" display-tooltip-when-elided="true" name="tower-name" class="tower-menu-label" style="flex-grow: 0; flex-direction: column;" />
                 <ui:Label text="Label" display-tooltip-when-elided="true" name="tower-info" class="tower-menu-label" />
@@ -11,6 +11,7 @@
                 <ui:Button display-tooltip-when-elided="true" name="tower-1-btn" style="height: 45px; width: 60px; font-size: 10px; color: rgb(0, 0, 0); background-image: url(&apos;/Assets/AssetPacks/VoxelArt/Models/Tower/tower1.png&apos;);" />
                 <ui:Button display-tooltip-when-elided="true" name="tower-2-btn" style="height: 45px; width: 60px; align-items: stretch; font-size: 10px; color: rgb(5, 0, 0); background-image: url(&apos;/Assets/AssetPacks/VoxelArt/Models/Tower/tower2.png&apos;);" />
                 <ui:Button display-tooltip-when-elided="true" name="tower-3-btn" style="height: 45px; width: 60px; align-items: stretch; font-size: 10px; color: rgb(5, 0, 0); background-image: url(&apos;/Assets/AssetPacks/VoxelArt/Models/Tower/tower3.png&apos;);" />
+                <ui:Button text="Merge" display-tooltip-when-elided="true" name="merge-btn" style="height: 45px; width: 60px; align-items: stretch; font-size: 10px; color: rgb(0, 0, 0);" />
                 <ui:Button text="Sell" display-tooltip-when-elided="true" name="sell-btn" style="height: 45px; width: 60px; align-items: stretch; font-size: 10px; color: rgb(0, 0, 0);" />
                 <ui:Button text="Close" display-tooltip-when-elided="true" name="close-btn" style="height: 45px; width: 60px; align-items: stretch; font-size: 10px; color: rgb(0, 0, 0);" />
             </ui:VisualElement>

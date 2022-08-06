@@ -106,8 +106,14 @@ public class ObjectPool : MonoBehaviour
             yield return new WaitForSeconds(1f / wave.rate);
         }
 
-        WaveCompleted();
-        //state = SpawnState.WAITING;
+        if (nextWave + 1 > waves.Length - 1)
+        {
+            state = SpawnState.WAITING;
+        }
+        else
+        {
+            WaveCompleted();
+        }
     }
 
     void SpawnEnemy(Enemy enemy)

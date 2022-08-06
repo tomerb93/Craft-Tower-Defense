@@ -104,6 +104,15 @@ public class Weapon : MonoBehaviour
         emission.rateOverTime = speed;
     }
 
+    public void MergeWeaponStats(Weapon weapon)
+    {
+        damage += weapon.damage;
+        damageOverTime += weapon.damageOverTime;
+        damageOverTimeDuration = Mathf.Max(damageOverTimeDuration, weapon.damageOverTimeDuration);
+        slow = Mathf.Max(slow, weapon.slow);
+        slowDuration = Mathf.Max(slowDuration, weapon.slowDuration);
+    }
+
     public void UpgradeDamage(float amount)
     {
         damage += amount;

@@ -18085,6 +18085,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: timeBetweenWaves
+      value: 999
+      objectReference: {fileID: 0}
     - target: {fileID: 2681457072157978579, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -18339,15 +18343,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5502943004426336814, guid: b3f5d462e57d54c44a4d14bbc3fa7c20, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 5502943004426336814, guid: b3f5d462e57d54c44a4d14bbc3fa7c20, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5502943004426336814, guid: b3f5d462e57d54c44a4d14bbc3fa7c20, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5502943004426336814, guid: b3f5d462e57d54c44a4d14bbc3fa7c20, type: 3}
       propertyPath: m_LocalRotation.w

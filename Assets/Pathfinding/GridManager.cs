@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 
@@ -18,10 +19,12 @@ public class GridManager : MonoBehaviour
     [SerializeField] int unityGridSize = 10;
 
     Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
+    Pathfinder pathfinder;
 
     void Awake()
     {
         CreateGrid();
+        pathfinder = FindObjectOfType<Pathfinder>();
     }
 
     public Node GetNode(Vector2Int coordinates)
@@ -50,6 +53,15 @@ public class GridManager : MonoBehaviour
         {
             grid[coordinates].isWalkable = false;
         }
+    }
+
+    public void DestroyTowerAndRemoveFromNode(Vector2Int coordinates)
+    {
+        Destroy(GetNode(coordinates).placedTower.gameObject);
+        GetNode(coordinates).placedTower = null;
+        FreeNode(coordinates);
+        SelectNodeTile(new Vector2Int(-1, -1));
+        pathfinder.BroadcastRecalculatePath();
     }
 
     public void FreeNode(Vector2Int coordinates)

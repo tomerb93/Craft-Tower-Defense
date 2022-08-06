@@ -19,6 +19,7 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
     Button towerThreeBtn;
     Button sellBtn;
     Button closeButton;
+    Button mergeButton;
 
     Label towerName;
     Label towerInfo;
@@ -29,17 +30,14 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
     Weapon towerWeapon;
     Bank bank;
     GridManager gridManager;
-    Pathfinder pathfinder;
 
     bool isOpened = false;
-    Vector2Int coordinates;
 
     void Awake()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
         bank = FindObjectOfType<Bank>();
         gridManager = FindObjectOfType<GridManager>();
-        pathfinder = FindObjectOfType<Pathfinder>();
 
         QueryViewControls();
         SetOnEventHandlers();
@@ -47,13 +45,20 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
         DisableButtons();
     }
 
-    void DisableButtons()
-    {
-        towerOneBtn.SetEnabled(false);
-        towerTwoBtn.SetEnabled(false);
-        towerThreeBtn.SetEnabled(false);
-    }
+    
 
+    public void QueryViewControls()
+    {
+        towerOneBtn = root.Q<Button>("tower-1-btn");
+        towerTwoBtn = root.Q<Button>("tower-2-btn");
+        towerThreeBtn = root.Q<Button>("tower-3-btn");
+        mergeButton = root.Q<Button>("merge-btn");
+        sellBtn = root.Q<Button>("sell-btn");
+        closeButton = root.Q<Button>("close-btn");
+        towerName = root.Q<Label>("tower-name");
+        towerInfo = root.Q<Label>("tower-info");
+        towerStats = root.Q<Label>("tower-stats");
+    }
 
     public void SetOnEventHandlers()
     {
@@ -62,30 +67,19 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
         towerThreeBtn.clicked += TowerThreeBtnPressed;
         sellBtn.clicked += SellBtnPressed;
         closeButton.clicked += Hide;
-    }
-
-    public void QueryViewControls()
-    {
-        towerOneBtn = root.Q<Button>("tower-1-btn");
-        towerTwoBtn = root.Q<Button>("tower-2-btn");
-        towerThreeBtn = root.Q<Button>("tower-3-btn");
-        sellBtn = root.Q<Button>("sell-btn");
-        closeButton = root.Q<Button>("close-btn");
-        towerName = root.Q<Label>("tower-name");
-        towerInfo = root.Q<Label>("tower-info");
-        towerStats = root.Q<Label>("tower-stats");
+        mergeButton.clicked += MergeTower;
     }
 
     public void ToggleVisibility(bool display)
     {
         isOpened = display;
         root.style.display = display ? DisplayStyle.Flex : DisplayStyle.None;
+        tower = null;
     }
 
-    public void BindSelectedTower(Vector2Int coordinatesOfNode)
+    public void BindSelectedTower(Vector2Int coordinates)
     {
-        this.tower = gridManager.GetNode(coordinatesOfNode).placedTower;
-        this.coordinates = coordinatesOfNode;
+        this.tower = gridManager.GetNode(coordinates).placedTower;
         towerWeapon = tower.GetComponent<Tower>().GetComponentInChildren<Weapon>();
         towerName.text = towerWeapon.Name;
         towerInfo.text = towerWeapon.Info;
@@ -97,29 +91,39 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
         ToggleVisibility(false);
     }
 
+    void DisableButtons()
+    {
+        towerOneBtn.SetEnabled(false);
+        towerTwoBtn.SetEnabled(false);
+        towerThreeBtn.SetEnabled(false);
+    }
+
     void TowerOneBtnPressed()
     {
-        tower.SetTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon1, tower, tower.transform.position);
+        tower.BuildTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon1);
     }
 
     void TowerTwoBtnPressed()
     {
-        tower.SetTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon2, tower, tower.transform.position);
+        tower.BuildTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon2);
     }
 
     void TowerThreeBtnPressed()
     {
-        tower.SetTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon3, tower, tower.transform.position);
+        tower.BuildTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon3);
     }
 
     void SellBtnPressed()
     {
-        // TODO: Still not working, need to update specific Tile on destruction
-        Destroy(tower.gameObject);
-        tower = null;
-        gridManager.GetNode(coordinates).placedTower = null;
-        gridManager.FreeNode(coordinates);
-        gridManager.SelectNodeTile(new Vector2Int(-1,-1));
-        pathfinder.BroadcastRecalculatePath();
+        bank.DepositBalance(tower.Value);
+        gridManager.DestroyTowerAndRemoveFromNode(tower.Coordinates);
+        ToggleVisibility(false);
+        
+    }
+
+    void MergeTower()
+    {
+        tower.GetComponent<Tower>().BeginMerge();
+        ToggleVisibility(false);
     }
 }
