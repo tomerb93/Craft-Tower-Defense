@@ -13,6 +13,7 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
     public Button TowerOneBtn => towerOneBtn;
     public Button TowerTwoBtn => towerTwoBtn;
     public Button TowerThreeBtn => towerThreeBtn;
+    
 
     Button towerOneBtn;
     Button towerTwoBtn;
@@ -27,7 +28,6 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
 
     VisualElement root;
     Tower tower;
-    Weapon towerWeapon;
     Bank bank;
     GridManager gridManager;
 
@@ -45,7 +45,46 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
         DisableButtons();
     }
 
-    
+    void Update()
+    {
+        if (isOpened)
+        {
+            ProcessInput();
+        }
+    }
+
+    void ProcessInput()
+    {
+        if (Input.GetKey(KeyCode.Alpha1) )
+        {
+            TowerOneBtnPressed();
+        }
+
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            TowerTwoBtnPressed();
+        }
+
+        if (Input.GetKey(KeyCode.Alpha3))
+        {
+            TowerThreeBtnPressed();
+        }
+
+        if (Input.GetKey(KeyCode.F))
+        {
+            MergeTower();
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            SellBtnPressed();
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Hide();
+        }
+    }
 
     public void QueryViewControls()
     {
@@ -80,10 +119,7 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
     public void BindSelectedTower(Vector2Int coordinates)
     {
         this.tower = gridManager.GetNode(coordinates).placedTower;
-        towerWeapon = tower.GetComponent<Tower>().GetComponentInChildren<Weapon>();
-        towerName.text = towerWeapon.Name;
-        towerInfo.text = towerWeapon.Info;
-        towerStats.text = towerWeapon.Stats;
+        RefreshWeaponText();
     }
 
     void Hide()
@@ -98,19 +134,30 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
         towerThreeBtn.SetEnabled(false);
     }
 
+    void RefreshWeaponText()
+    {
+        var towerWeapon = tower.GetComponent<Tower>().GetComponentInChildren<Weapon>();
+        towerName.text = towerWeapon.Name;
+        towerInfo.text = towerWeapon.Info;
+        towerStats.text = towerWeapon.Stats;
+    }
+
     void TowerOneBtnPressed()
     {
         tower.BuildTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon1);
+        RefreshWeaponText();
     }
 
     void TowerTwoBtnPressed()
     {
         tower.BuildTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon2);
+        RefreshWeaponText();
     }
 
     void TowerThreeBtnPressed()
     {
         tower.BuildTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon3);
+        RefreshWeaponText();
     }
 
     void SellBtnPressed()
@@ -123,7 +170,7 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
 
     void MergeTower()
     {
-        tower.GetComponent<Tower>().BeginMerge();
+        tower.BeginMerge();
         ToggleVisibility(false);
     }
 }

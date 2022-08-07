@@ -35,4 +35,18 @@
 
 .tower-menu-label {
     color: rgb(255, 255, 255);
+    -unity-font-definition: url('/Assets/AssetPacks/Fonts/Baby Shower SDF 1.asset');
+}
+
+.craft-menu-label {
+    -unity-font-definition: url('/Assets/AssetPacks/Fonts/Square-Black SDF 1.asset');
+    font-size: 16px;
+    -unity-font-style: normal;
+}
+
+.tower-menu-button {
+    color: rgba(255, 255, 255, 255);
+    -unity-font-definition: url('/Assets/AssetPacks/Fonts/Square-Black SDF 1.asset');
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 255);
 }

@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
 
     float currentHitPoints;
     bool isDotted;
+    float currentDotDamage;
 
     void Start()
     {
@@ -26,9 +27,18 @@ public class EnemyHealth : MonoBehaviour
 
     void ProcessHit(Weapon weapon)
     {
-        if (weapon.HasDOT && !isDotted)
+        if (weapon.HasDOT)
         {
-            StartCoroutine(ProcessDotDamage(weapon));
+            if (!isDotted)
+            {
+                StartCoroutine(ProcessDotDamage(weapon));
+            }
+            else if (isDotted && weapon.DamageOverTime > currentDotDamage)
+            {
+                StopAllCoroutines();
+                StartCoroutine(ProcessDotDamage(weapon));
+            }
+                
         }
         else
         {
@@ -51,6 +61,8 @@ public class EnemyHealth : MonoBehaviour
     IEnumerator ProcessDotDamage(Weapon weapon)
     {
         isDotted = true;
+
+        currentDotDamage = weapon.DamageOverTime;
 
         for (int i = 0; i < weapon.DamageOverTimeDuration; i++)
         {

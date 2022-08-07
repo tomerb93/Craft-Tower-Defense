@@ -18086,8 +18086,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waveCountdown
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
       propertyPath: timeBetweenWaves
-      value: 999
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2681457072157978579, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
       propertyPath: m_RootOrder

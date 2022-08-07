@@ -140,7 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0730cf350d4f08647af87e88464b598b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 50
+  value: 50
+  powerLevel: 0
 --- !u!65 &3622703093591353387
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -152,8 +153,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 8, z: 6}
-  m_Center: {x: 0, y: 4, z: 0}
+  m_Size: {x: 6, y: 5, z: 6}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!1 &2855730480678137141
 GameObject:
   m_ObjectHideFlags: 0

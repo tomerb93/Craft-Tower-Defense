@@ -2,19 +2,19 @@
     <Style src="/Assets/main.uss" />
     <ui:VisualElement style="flex-grow: 1; justify-content: space-around; align-items: center;">
         <ui:VisualElement name="main-view" style="flex-basis: 500px; flex-shrink: initial; width: 400px; height: 500px; flex-grow: initial; flex-direction: column; background-color: rgb(219, 96, 96); align-items: center;">
-            <ui:Label text="Crafting Menu" display-tooltip-when-elided="true" style="align-items: flex-end;" />
+            <ui:Label text="Crafting Menu" display-tooltip-when-elided="true" class="craft-menu-label" style="align-items: flex-end;" />
             <ui:VisualElement name="third-row" class="craft-menu-row" style="justify-content: flex-start; align-items: stretch;">
-                <ui:Label text="Level 3" display-tooltip-when-elided="true" style="align-items: flex-end;" />
+                <ui:Label text="Level 3" display-tooltip-when-elided="true" class="craft-menu-label" style="align-items: flex-end;" />
                 <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
                 <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
             </ui:VisualElement>
             <ui:VisualElement name="second-row" class="craft-menu-row">
-                <ui:Label text="Level 2" display-tooltip-when-elided="true" style="align-items: flex-end;" />
+                <ui:Label text="Level 2" display-tooltip-when-elided="true" class="craft-menu-label" style="align-items: flex-end;" />
                 <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" />
                 <ui:Button display-tooltip-when-elided="true" class="craft-menu-button" style="-unity-text-align: lower-center;" />
             </ui:VisualElement>
             <ui:VisualElement name="first-row" class="craft-menu-row">
-                <ui:Label text="Level 1" display-tooltip-when-elided="true" style="align-items: flex-end;" />
+                <ui:Label text="Level 1" display-tooltip-when-elided="true" class="craft-menu-label" style="align-items: flex-end;" />
                 <ui:Button display-tooltip-when-elided="true" name="cryo-tower-btn" class="craft-menu-button" style="background-image: url(&apos;/Assets/AssetPacks/VoxelArt/Models/Tower/tower3.png&apos;);" />
                 <ui:Button display-tooltip-when-elided="true" name="goop-tower-btn" class="craft-menu-button" style="background-image: url(&apos;/Assets/AssetPacks/VoxelArt/Models/Tower/tower2.png&apos;);" />
             </ui:VisualElement>

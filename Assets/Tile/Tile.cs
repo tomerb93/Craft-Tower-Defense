@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour
     GridManager gridManager;
     Pathfinder pathfinder;
     Vector2Int coordinates;
-
+    TowerMenuController towerMenu;
     PrefabManager prefabManager;
 
     void Awake()
@@ -16,6 +16,7 @@ public class Tile : MonoBehaviour
         gridManager = FindObjectOfType<GridManager>();
         pathfinder = FindObjectOfType<Pathfinder>();
         prefabManager = FindObjectOfType<PrefabManager>();
+        towerMenu = FindObjectOfType<TowerMenuController>();
     }
 
     void Start()
@@ -34,7 +35,8 @@ public class Tile : MonoBehaviour
     void OnMouseOver()
     {
         if (!gridManager.NodeIsTaken(coordinates) &&
-            gridManager.GetNode(coordinates).isWalkable)
+            gridManager.GetNode(coordinates).isWalkable &&
+            !towerMenu.IsOpened)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -45,6 +47,11 @@ public class Tile : MonoBehaviour
             {
                 InstantiateObstacle();
             }
+        }
+        else if (Input.GetMouseButtonDown(0) && towerMenu.IsOpened) // Tower menu is open and we click on anywhere but another tower
+        {
+            towerMenu.ToggleVisibility(false);
+            gridManager.SelectNodeTile(new Vector2Int(-1, -1)); // To deselect towers w/o selecting
         }
     }
 

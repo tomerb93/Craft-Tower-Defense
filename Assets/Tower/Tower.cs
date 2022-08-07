@@ -17,13 +17,13 @@ public class Tower : MonoBehaviour
     [SerializeField] private int powerLevel = 0;
     
     GridManager gridManager;
-    bool isMerging = false;
     Vector2Int coordinates;
     TowerMenuController towerMenu;
     Pathfinder pathfinder;
     PrefabManager prefabManager;
     Light powerLevelLight;
     AlertController alert;
+    bool isMerging;
 
     void Awake()
     {
@@ -41,31 +41,30 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
-        if (isMerging && Input.GetMouseButtonDown(0))
+        if (isMerging)
         {
-            GetTowerClicked();
-        }
-        else if (isMerging && Input.GetMouseButtonUp(1))
-        {
-            Debug.Log("Merging cancelled");
-            isMerging = false;
+            if (Input.GetMouseButtonDown(0))
+            {
+                GetTowerClicked();
+            }
+            else if (Input.GetMouseButtonUp(1))
+            {
+                Debug.Log("Merging cancelled");
+                isMerging = false;
+            }
+            
         }
     }
 
 
     void OnMouseOver()
     {
-        if (gridManager.GetNode(coordinates).placedTower != null) // Tower placed in current tile
+        if (gridManager.GetNode(coordinates).placedTower != null && !isMerging) // Tower placed in current tile
         {
             if (Input.GetMouseButtonDown(0))
             {
-                BindAndDisplaySelectedTowerMenu();
+                BindAndDisplaySelectedTower();
             }
-        }
-        else if (Input.GetMouseButtonDown(0) && towerMenu.IsOpened) // Tower menu is open and we click on anywhere but another tower
-        {
-            towerMenu.ToggleVisibility(false);
-            gridManager.SelectNodeTile(new Vector2Int(-1, -1)); // To deselect towers w/o selecting
         }
     }
 
@@ -81,25 +80,33 @@ public class Tower : MonoBehaviour
         switch (powerLevel)
         {
             case 0:
+                powerLevelLight.intensity = 0f;
+                break;
+            case 1:
             {
                 powerLevelLight.intensity = 1f;
                 break;
             }
-            case 3:
+            case 2:
             {
-                powerLevelLight.intensity = 15f;
+                powerLevelLight.intensity = 5f;
                 break;
             }
             case 5:
             {
-                powerLevelLight.intensity = 50f;
+                powerLevelLight.intensity = 10f;
+                break;
+            }
+            case 10:
+            {
+                powerLevelLight.intensity = 15f;
                 powerLevelLight.color = Color.red;
                 break;
             }
         }
     }
 
-    void BindAndDisplaySelectedTowerMenu()
+    void BindAndDisplaySelectedTower()
     {
         towerMenu.ToggleVisibility(true);
         towerMenu.BindSelectedTower(coordinates);
@@ -135,14 +142,30 @@ public class Tower : MonoBehaviour
             return;
         }
 
-        // Transfer stats from dest tower before destroying
+        if (GetTowerWeaponType() != destTower.GetTowerWeaponType())
+        {
+            alert.Alert("Cannot merge two different types of towers");
+            isMerging = false;
+            return;
+        }
+
+        if (destTowerCoords == coordinates)
+        {
+            alert.Alert("Cannot fuse into the same tower");
+            isMerging = false;
+            return;
+        }
+        
+
+        // Transfer stats from src tower before destroying
         destTower.GetComponentInChildren<Weapon>().MergeWeaponStats(GetComponentInChildren<Weapon>());
         destTower.IncrementPowerLevel();
         destTower.SetLightByPowerLevel();
 
-        // Destroy previous towers
+        // Destroy src tower
         gridManager.DestroyTowerAndRemoveFromNode(coordinates);
-        
+        destTower.BindAndDisplaySelectedTower();
+        gridManager.SelectNodeTile(destTowerCoords);
 
         isMerging = false;
     }
@@ -150,13 +173,20 @@ public class Tower : MonoBehaviour
     public Tower CreateTower(Vector3 position)
     {
         var bank = FindObjectOfType<Bank>();
+        towerMenu = FindObjectOfType<TowerMenuController>();
 
         if (bank == null)
         {
+            alert.Alert("Not enough funds");
             return null;
         }
 
         return bank.WithdrawBalance(value) ? BuildTower(position) : null;
+    }
+
+    public PrefabManager.PrefabIndices GetTowerWeaponType()
+    {
+        return GetComponentInChildren<Weapon>().WeaponType;
     }
 
 
@@ -193,19 +223,24 @@ public class Tower : MonoBehaviour
         var prefabs = FindObjectOfType<PrefabManager>();
 
         var weapon = GetComponentInChildren<Weapon>();
+
         if (weapon != null)
         {
             Destroy(weapon.gameObject);
         }
 
-        Instantiate(prefabs.GetPrefab(weaponIndex),
+        weapon = Instantiate(prefabs.GetPrefab(weaponIndex),
             gameObject.transform.position + prefabs.GetPrefabPosition(weaponIndex),
             Quaternion.identity, gameObject.transform).GetComponent<Weapon>();
+
+        if (weapon != null)
+        {
+            weapon.WeaponType = weaponIndex;
+        }
     }
 
     public void BeginMerge()
     {
         isMerging = true;
-        Debug.Log("Now merging");
     }
 }

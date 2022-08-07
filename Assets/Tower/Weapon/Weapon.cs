@@ -72,6 +72,8 @@ public class Weapon : MonoBehaviour
         get { return $"Damage: {damage}, DoT: {damageOverTime}, Speed: {speed}, Slow: {slow}"; }
     }
 
+    public PrefabManager.PrefabIndices WeaponType { get; set; }
+
 
     [SerializeField] float damage = 0.5f;
     [SerializeField] float damageOverTime = 0f;
@@ -87,6 +89,7 @@ public class Weapon : MonoBehaviour
 
 
     ParticleSystem bulletParticleSystem;
+    PrefabManager.PrefabIndices weaponType;
 
     void Awake()
     {
