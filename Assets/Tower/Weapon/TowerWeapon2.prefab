@@ -103,7 +103,7 @@ MonoBehaviour:
   speed: 3
   range: 30
   weaponName: Goop Tower
-  info: Slows and deals damage over time
+  info: Slows and deals damage over time. Ignores armor
   slow: 0.3
   slowDuration: 10
 --- !u!1001 &7606004133953749923

@@ -18093,6 +18093,78 @@ PrefabInstance:
       propertyPath: timeBetweenWaves
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[0].name
+      value: Second wave
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[0].rate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[1].name
+      value: Hey
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[1].rate
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[2].name
+      value: So Many!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[2].rate
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[3].name
+      value: Bic boys, part one
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[3].rate
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[4].name
+      value: Bic boys, part two
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[4].rate
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[0].count
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[1].count
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[2].count
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[3].count
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[3].enemy
+      value: 
+      objectReference: {fileID: 1328071014130475066, guid: 6f7f4216c97522345a571169ce415a9b, type: 3}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[4].count
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681457072157978576, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
+      propertyPath: waves.Array.data[4].enemy
+      value: 
+      objectReference: {fileID: 8265599547939223824, guid: 8e6552ce4f5d44e40a29bb45266f44cc, type: 3}
     - target: {fileID: 2681457072157978579, guid: 882d8ac3c10713b4886ff2e5f0a43d37, type: 3}
       propertyPath: m_RootOrder
       value: 4

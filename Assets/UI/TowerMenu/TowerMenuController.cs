@@ -25,6 +25,7 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
     Label towerName;
     Label towerInfo;
     Label towerStats;
+    Label towerLevel;
 
     VisualElement root;
     Tower tower;
@@ -97,6 +98,7 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
         towerName = root.Q<Label>("tower-name");
         towerInfo = root.Q<Label>("tower-info");
         towerStats = root.Q<Label>("tower-stats");
+        towerLevel = root.Q<Label>("tower-level");
     }
 
     public void SetOnEventHandlers()
@@ -136,10 +138,12 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
 
     void RefreshWeaponText()
     {
-        var towerWeapon = tower.GetComponent<Tower>().GetComponentInChildren<Weapon>();
+        var towerWeapon = tower.GetComponentInChildren<Weapon>();
         towerName.text = towerWeapon.Name;
         towerInfo.text = towerWeapon.Info;
         towerStats.text = towerWeapon.Stats;
+        towerLevel.text = $"Level:{tower.PowerLevel}";
+        mergeButton.text = $"Fuse (F) ~ {tower.MergeCost}";
     }
 
     void TowerOneBtnPressed()

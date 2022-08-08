@@ -9,11 +9,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8004596770007441579, guid: 5839172184b4eac408f6e698d9b67775, type: 3}
       propertyPath: armor
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8004596770007441579, guid: 5839172184b4eac408f6e698d9b67775, type: 3}
       propertyPath: startingHitpoints
-      value: 120
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: -3773044356339577192, guid: 5839172184b4eac408f6e698d9b67775, type: 3}
+      propertyPath: balanceReward
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1677290663481601059, guid: 5839172184b4eac408f6e698d9b67775, type: 3}
       propertyPath: m_Size.x

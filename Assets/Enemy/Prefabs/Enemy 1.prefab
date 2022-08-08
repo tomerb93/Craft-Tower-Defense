@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723f8770062326e4e9d8d6340ca4f7d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHitpoints: 5
+  startingHitpoints: 10
   armor: 0
   healthBar: {fileID: 5310100155028647839}
   deathVFX: {fileID: 5488010430622927443}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9565185d80ac0d44da9be7d95010b7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balanceReward: 5
+  balanceReward: 2
   hitpointPenalty: 1
   spawnParticleSystem: {fileID: 5947072872937977299}
 --- !u!1 &3917203319528800236

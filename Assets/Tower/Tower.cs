@@ -13,6 +13,16 @@ public class Tower : MonoBehaviour
     public Vector2Int Coordinates { get { return coordinates; } }
     public int Value { get { return value; } }
 
+    public int MergeCost
+    {
+        get { return (int)Mathf.Pow(2, powerLevel) * value; }
+    }
+
+    public int PowerLevel
+    {
+        get { return powerLevel; }
+    }
+
     [SerializeField] private int value = 50;
     [SerializeField] private int powerLevel = 0;
     
@@ -20,7 +30,6 @@ public class Tower : MonoBehaviour
     Vector2Int coordinates;
     TowerMenuController towerMenu;
     Pathfinder pathfinder;
-    PrefabManager prefabManager;
     Light powerLevelLight;
     AlertController alert;
     bool isMerging;
@@ -33,7 +42,6 @@ public class Tower : MonoBehaviour
         gridManager = FindObjectOfType<GridManager>();
         towerMenu = FindObjectOfType<TowerMenuController>();
         pathfinder = FindObjectOfType<Pathfinder>();
-        prefabManager = FindObjectOfType<PrefabManager>();
         alert = FindObjectOfType<AlertController>();
         
         SetLightByPowerLevel();
@@ -47,12 +55,6 @@ public class Tower : MonoBehaviour
             {
                 GetTowerClicked();
             }
-            else if (Input.GetMouseButtonUp(1))
-            {
-                Debug.Log("Merging cancelled");
-                isMerging = false;
-            }
-            
         }
     }
 
@@ -127,17 +129,23 @@ public class Tower : MonoBehaviour
                 {
                     MergeTowers(rayHit.collider.gameObject.GetComponent<Tower>().Coordinates);
                 }
+                else
+                {
+                    alert.Alert("Fusing cancelled");
+                    isMerging = false;
+                }
             }
         }
     }
 
     void MergeTowers(Vector2Int destTowerCoords)
     {
+        var bank = FindObjectOfType<Bank>();
         Tower destTower = gridManager.Grid[destTowerCoords].placedTower;
 
-        if (this.powerLevel > destTower.powerLevel)
+        if (!bank.WithdrawBalance(MergeCost))
         {
-            alert.Alert("Cannot merge a stronger tower to a weaker one");
+            alert.Alert("Not enough funds to fuse");
             isMerging = false;
             return;
         }
@@ -159,7 +167,7 @@ public class Tower : MonoBehaviour
 
         // Transfer stats from src tower before destroying
         destTower.GetComponentInChildren<Weapon>().MergeWeaponStats(GetComponentInChildren<Weapon>());
-        destTower.IncrementPowerLevel();
+        destTower.powerLevel += (powerLevel + 1);
         destTower.SetLightByPowerLevel();
 
         // Destroy src tower
@@ -177,7 +185,6 @@ public class Tower : MonoBehaviour
 
         if (bank == null)
         {
-            alert.Alert("Not enough funds");
             return null;
         }
 

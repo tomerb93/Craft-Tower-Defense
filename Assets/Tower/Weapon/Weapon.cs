@@ -109,11 +109,13 @@ public class Weapon : MonoBehaviour
 
     public void MergeWeaponStats(Weapon weapon)
     {
-        damage += weapon.damage;
+        damage += (weapon.damage * 2);
         damageOverTime += weapon.damageOverTime;
         damageOverTimeDuration = Mathf.Max(damageOverTimeDuration, weapon.damageOverTimeDuration);
         slow = Mathf.Max(slow, weapon.slow);
+        speed ++;
         slowDuration = Mathf.Max(slowDuration, weapon.slowDuration);
+        SetParticleSystemProperties();
     }
 
     public void UpgradeDamage(float amount)

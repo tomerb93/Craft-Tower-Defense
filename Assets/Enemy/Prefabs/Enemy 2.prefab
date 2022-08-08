@@ -13,7 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8004596770007441579, guid: 5839172184b4eac408f6e698d9b67775, type: 3}
       propertyPath: startingHitpoints
-      value: 15
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -3773044356339577192, guid: 5839172184b4eac408f6e698d9b67775, type: 3}
+      propertyPath: balanceReward
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1677290663481601059, guid: 5839172184b4eac408f6e698d9b67775, type: 3}
       propertyPath: m_Size.x
