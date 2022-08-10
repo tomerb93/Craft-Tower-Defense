@@ -13,7 +13,6 @@ public class ObjectPool : MonoBehaviour
     };
 
     [SerializeField] float waveCountdown;
-    [SerializeField] float timeBetweenWaves = 5f;
     [SerializeField] Wave[] waves;
 
     int nextWave;
@@ -67,6 +66,7 @@ public class ObjectPool : MonoBehaviour
         alert.Alert("Wave completed", 24, true);
         if (nextWave + 1 > waves.Length - 1)
         {
+            
             // TODO : make this dynamic by using a new method in gameManager
             if (SceneManager.GetActiveScene().buildIndex == 2) 
             {
@@ -106,6 +106,7 @@ public class ObjectPool : MonoBehaviour
             yield return new WaitForSeconds(1f / wave.rate);
         }
 
+        // If last wave prevent from moving on as last minion is spawned
         if (nextWave + 1 > waves.Length - 1)
         {
             state = SpawnState.WAITING;
@@ -123,9 +124,11 @@ public class ObjectPool : MonoBehaviour
 
     void AnnounceNextWaveAndStartCountdown()
     {
+        Wave wave = waves[nextWave];
+
         state = SpawnState.COUNTING;
-        alert.Alert($"{waves[nextWave].name}: Spawning in {timeBetweenWaves} seconds", 24, true);
-        waveCountdown = timeBetweenWaves;
+        alert.Alert($"{wave.name}: Spawning in {wave.delay} seconds", 24, true);
+        waveCountdown = wave.delay;
     }
 
     bool EnemyIsAlive()

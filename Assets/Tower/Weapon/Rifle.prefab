@@ -9692,7 +9692,7 @@ GameObject:
   - component: {fileID: 3834004743958603900}
   - component: {fileID: 2419880735910293571}
   m_Layer: 0
-  m_Name: TowerWeapon
+  m_Name: Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9774,7 +9774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6096c8c270ecc734cb26adf9880042dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: 5
   damageOverTime: 0
   damageOverTimer: 0
   damageOverTimeDuration: 0

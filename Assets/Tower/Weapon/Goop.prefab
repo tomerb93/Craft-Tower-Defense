@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 196185196819033866}
   - component: {fileID: 1592241067732268853}
   m_Layer: 0
-  m_Name: TowerWeapon2
+  m_Name: Goop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -143,24 +143,24 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
         towerInfo.text = towerWeapon.Info;
         towerStats.text = towerWeapon.Stats;
         towerLevel.text = $"Level:{tower.PowerLevel}";
-        mergeButton.text = $"Fuse (F) ~ {tower.MergeCost}";
+        mergeButton.text = $"Fuse (F) - {towerWeapon.GetMergeCost()}";
     }
 
     void TowerOneBtnPressed()
     {
-        tower.BuildTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon1);
+        tower.BuildTowerWeapon(PrefabManager.PrefabIndices.RifleTower);
         RefreshWeaponText();
     }
 
     void TowerTwoBtnPressed()
     {
-        tower.BuildTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon2);
+        tower.BuildTowerWeapon(PrefabManager.PrefabIndices.GoopTower);
         RefreshWeaponText();
     }
 
     void TowerThreeBtnPressed()
     {
-        tower.BuildTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon3);
+        tower.BuildTowerWeapon(PrefabManager.PrefabIndices.CryogenicTower);
         RefreshWeaponText();
     }
 
@@ -174,7 +174,7 @@ public class TowerMenuController : MonoBehaviour, IViewWithButton
 
     void MergeTower()
     {
-        tower.BeginMerge();
+        tower.BeginFusion();
         ToggleVisibility(false);
     }
 }

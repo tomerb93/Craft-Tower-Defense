@@ -72,7 +72,14 @@ public class Weapon : MonoBehaviour
         get { return $"Damage: {damage}, DoT: {damageOverTime}, Speed: {speed}, Slow: {slow}"; }
     }
 
-    public PrefabManager.PrefabIndices WeaponType { get; set; }
+    public PrefabManager.PrefabIndices WeaponType
+    {
+        get
+        {
+            return weaponType;
+        }
+        set { weaponType = value; }
+    }
 
 
     [SerializeField] float damage = 0.5f;
@@ -107,35 +114,29 @@ public class Weapon : MonoBehaviour
         emission.rateOverTime = speed;
     }
 
-    public void MergeWeaponStats(Weapon weapon)
+    public void FuseWeaponStats(Weapon weapon)
     {
         damage += (weapon.damage * 2);
         damageOverTime += weapon.damageOverTime;
         damageOverTimeDuration = Mathf.Max(damageOverTimeDuration, weapon.damageOverTimeDuration);
         slow = Mathf.Max(slow, weapon.slow);
-        speed ++;
+        speed+=0.5f;
         slowDuration = Mathf.Max(slowDuration, weapon.slowDuration);
         SetParticleSystemProperties();
     }
 
-    public void UpgradeDamage(float amount)
+    public int GetMergeCost()
     {
-        damage += amount;
-    }
-
-    public void UpgradeSpeed(float amount)
-    {
-        speed += amount;
-        SetParticleSystemProperties();
-    }
-
-    public void UpgradeSlow(float amount)
-    {
-        slow += amount;
-
-        if (slow > 0.8f)
+        switch (weaponType)
         {
-            slow = 0.8f;
+            case PrefabManager.PrefabIndices.RifleTower:
+                return (int)(damage * 2);
+            case PrefabManager.PrefabIndices.GoopTower:
+                break;
+            case PrefabManager.PrefabIndices.CryogenicTower:
+                break;
         }
+
+        return 0;
     }
 }

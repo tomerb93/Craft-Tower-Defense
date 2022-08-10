@@ -12,19 +12,13 @@ public class Tower : MonoBehaviour
 {
     public Vector2Int Coordinates { get { return coordinates; } }
     public int Value { get { return value; } }
-
-    public int MergeCost
-    {
-        get { return (int)Mathf.Pow(2, powerLevel) * value; }
-    }
-
     public int PowerLevel
     {
         get { return powerLevel; }
     }
 
     [SerializeField] private int value = 50;
-    [SerializeField] private int powerLevel = 0;
+    [SerializeField] private int powerLevel = 1;
     
     GridManager gridManager;
     Vector2Int coordinates;
@@ -32,12 +26,12 @@ public class Tower : MonoBehaviour
     Pathfinder pathfinder;
     Light powerLevelLight;
     AlertController alert;
-    bool isMerging;
+    bool isFusing;
 
     void Awake()
     {
         // Instantiate starting tower weapon
-        BuildTowerWeapon(PrefabManager.PrefabIndices.TowerWeapon1);
+        BuildTowerWeapon(PrefabManager.PrefabIndices.RifleTower);
 
         gridManager = FindObjectOfType<GridManager>();
         towerMenu = FindObjectOfType<TowerMenuController>();
@@ -49,7 +43,7 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
-        if (isMerging)
+        if (isFusing)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -61,7 +55,7 @@ public class Tower : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (gridManager.GetNode(coordinates).placedTower != null && !isMerging) // Tower placed in current tile
+        if (gridManager.GetNode(coordinates).placedTower != null && !isFusing) // Tower placed in current tile
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -81,15 +75,15 @@ public class Tower : MonoBehaviour
 
         switch (powerLevel)
         {
-            case 0:
+            case 1:
                 powerLevelLight.intensity = 0f;
                 break;
-            case 1:
+            case 2:
             {
                 powerLevelLight.intensity = 1f;
                 break;
             }
-            case 2:
+            case 3:
             {
                 powerLevelLight.intensity = 5f;
                 break;
@@ -127,47 +121,54 @@ public class Tower : MonoBehaviour
             {
                 if (rayHit.collider.gameObject.GetComponent<Tower>() != null) // Tower clicked
                 {
-                    MergeTowers(rayHit.collider.gameObject.GetComponent<Tower>().Coordinates);
+                    FuseTowers(rayHit.collider.gameObject.GetComponent<Tower>().Coordinates);
                 }
                 else
                 {
                     alert.Alert("Fusing cancelled");
-                    isMerging = false;
+                    isFusing = false;
                 }
             }
         }
     }
 
-    void MergeTowers(Vector2Int destTowerCoords)
+    void FuseTowers(Vector2Int destTowerCoords)
     {
         var bank = FindObjectOfType<Bank>();
-        Tower destTower = gridManager.Grid[destTowerCoords].placedTower;
-
-        if (!bank.WithdrawBalance(MergeCost))
+        var destTower = gridManager.Grid[destTowerCoords].placedTower;
+        var srcWeapon = GetComponentInChildren<Weapon>();
+        if (!bank.WithdrawBalance(srcWeapon.GetMergeCost()))
         {
             alert.Alert("Not enough funds to fuse");
-            isMerging = false;
+            isFusing = false;
+            return;
+        }
+
+        if (powerLevel > destTower.powerLevel)
+        {
+            alert.Alert("Cannot fuse a stronger tower to a weaker one");
+            isFusing = false;
             return;
         }
 
         if (GetTowerWeaponType() != destTower.GetTowerWeaponType())
         {
             alert.Alert("Cannot merge two different types of towers");
-            isMerging = false;
+            isFusing = false;
             return;
         }
 
         if (destTowerCoords == coordinates)
         {
             alert.Alert("Cannot fuse into the same tower");
-            isMerging = false;
+            isFusing = false;
             return;
         }
         
 
         // Transfer stats from src tower before destroying
-        destTower.GetComponentInChildren<Weapon>().MergeWeaponStats(GetComponentInChildren<Weapon>());
-        destTower.powerLevel += (powerLevel + 1);
+        destTower.GetComponentInChildren<Weapon>().FuseWeaponStats(srcWeapon);
+        destTower.powerLevel += powerLevel;
         destTower.SetLightByPowerLevel();
 
         // Destroy src tower
@@ -175,7 +176,7 @@ public class Tower : MonoBehaviour
         destTower.BindAndDisplaySelectedTower();
         gridManager.SelectNodeTile(destTowerCoords);
 
-        isMerging = false;
+        isFusing = false;
     }
 
     public Tower CreateTower(Vector3 position)
@@ -246,8 +247,8 @@ public class Tower : MonoBehaviour
         }
     }
 
-    public void BeginMerge()
+    public void BeginFusion()
     {
-        isMerging = true;
+        isFusing = true;
     }
 }

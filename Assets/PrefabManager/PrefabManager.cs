@@ -8,9 +8,9 @@ public class PrefabManager : MonoBehaviour
     {
         Tower,
         Obstacle,
-        TowerWeapon1,
-        TowerWeapon2,
-        TowerWeapon3
+        RifleTower,
+        GoopTower,
+        CryogenicTower
     }
 
     [SerializeField] Prefab[] prefabs;
